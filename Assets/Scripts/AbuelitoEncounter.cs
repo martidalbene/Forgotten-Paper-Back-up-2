@@ -17,6 +17,7 @@ public class AbuelitoEncounter : MonoBehaviour
     private bool nextDialogue = false; // Variable que controla si ya se terminó de escribir la línea de díalogo para pasar a la siguiente
     private bool firstTimeWeMeet = true; // Para saber si es la primera vez que el jugador ingresa al área para interactuar
     public Player pj;
+    public GameObject NextDialogLetter;
 
     // Update is called once per frame
     void Update()
@@ -45,12 +46,16 @@ public class AbuelitoEncounter : MonoBehaviour
             }
         }
         // Si estamos en mitad de una interacción, presionamos F, y la frase anterior se terminó de escribir, pasaremos a la siguiente linea de texto
-        else if(Input.GetKeyDown(KeyCode.F) && nextDialogue)
+        else if(Input.GetKeyDown(KeyCode.F) && nextDialogue && NextDialogLetter.activeInHierarchy)
         {
             NextLine();
         }
 
-        if(dialogueText.text == dialogue[index]) nextDialogue = true; // Si ya se escribió toda la línea de texto, activo la variable que me permita pasar a la siguiente linea
+        if(dialogueText.text == dialogue[index]) 
+        {
+            NextDialogLetter.SetActive(true);
+            nextDialogue = true; // Si ya se escribió toda la línea de texto, activo la variable que me permita pasar a la siguiente linea
+        }
     }
 
     // Dejo el texto vacío, el índice en 0 y desactivo el panel donde se muestra
@@ -77,6 +82,7 @@ public class AbuelitoEncounter : MonoBehaviour
     // Cambio de linea de diálogo
     public void NextLine()
     {
+        NextDialogLetter.SetActive(false);
         nextDialogue = false; // Evito que se pueda pasar a la siguiente
 
         // Pregunto si el índice está al final de la lista de lineas de texto

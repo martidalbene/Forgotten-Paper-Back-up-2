@@ -286,6 +286,10 @@ public class Player : MonoBehaviour
         {
             inGround = false;
         }*/
+        if(collisionInfo.gameObject.tag == "scarab" || collisionInfo.gameObject.tag == "ant")
+        {
+            transform.position = respawn.transform.position;
+        }
     }
 
     // Verifico que Lito tocó el área final del nivel

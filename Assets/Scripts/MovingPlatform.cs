@@ -5,9 +5,6 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     [SerializeField]
-    private Transform Platform;
-
-    [SerializeField]
     private Transform start;
 
     [SerializeField]
@@ -20,9 +17,9 @@ public class MovingPlatform : MonoBehaviour
     {
         Vector2 target = CurrentMovementTarget();
 
-        Platform.position = Vector2.Lerp(Platform.position, target, Speed * Time.deltaTime);
+        transform.position = Vector2.Lerp(transform.position, target, Speed * Time.deltaTime);
 
-        float distance = (target - (Vector2)Platform.position).magnitude;
+        float distance = (target - (Vector2)transform.position).magnitude;
 
         if (distance <= 0.6f)
         {
@@ -45,14 +42,14 @@ public class MovingPlatform : MonoBehaviour
     private void OnDrawGizmos()
     {
         //Solo se ve en Debugeo
-        if (Platform != null && start != null && end != null)
+        if (transform != null && start != null && end != null)
         {
-            Gizmos.DrawLine(Platform.transform.position, start.position);
-            Gizmos.DrawLine(Platform.transform.position, end.position);
+            Gizmos.DrawLine(transform.position, start.position);
+            Gizmos.DrawLine(transform.position, end.position);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         collision.transform.SetParent(transform);
         Debug.Log("Hola");

@@ -18,14 +18,14 @@ public class ant : MonoBehaviour
     public LayerMask contactsPJ; // Variable que me facilita el reconomiento de las layers que el raycast debe detectar
     public Transform rayPoint; // Variable para controlar el lugar donde está el raycast para detectar el piso
     public Transform rayView; // Varieable para controlar el lugar donde empieza el raycast para detectar al jugador
-    public Animator animator; // Variable que le da "vida" al enemigo
+    //public Animator animator; // Variable que le da "vida" al enemigo
 
 
     Vector3 direction; // Variable que nos ayuda a controlar la distancia entre el personaje y el enemigo
 
     AudioSource audioSource;
 
-    public AudioClip clipAtack;
+    //public AudioClip clipAtack;
 
     Vector3 testEnd;
 
@@ -36,9 +36,9 @@ public class ant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
 
-        audioSource = GetComponent<AudioSource>();
+        //audioSource = GetComponent<AudioSource>();
 
         rb = GetComponent<Rigidbody2D>();
     }
@@ -59,37 +59,37 @@ public class ant : MonoBehaviour
         // Pregunto si el minero se encuentra dentro del rango de detección, pero el enemigo está en la plataforma de enfrente
         if(canSeePlayer() && !onGround())
         {
-            animator.SetBool("isWalking", false);
+            //animator.SetBool("isWalking", false);
             dontWalk();
         }
         
         // Pregunto si el minero está dentro del rango de detección, pero no está tan cerca como para morderlo
         if(canSeePlayer() && onGround())
         {
-            Debug.Log("Siguiendo");
+            //Debug.Log("Siguiendo");
             walkingTowards();
-            animator.SetBool("isWalking", true);
+            //animator.SetBool("isWalking", true);
         }
         
         // Si el enemigo no está en rango, patrullo
         if(!canSeePlayer() && onGround())
         {
             walk();
-            animator.SetBool("isWalking", true);
+            //animator.SetBool("isWalking", true);
         }
         
         // Pregunto si el minero está lo suficientemente cerca como para ser mordido
         if(direction.magnitude < biteRange && canSeePlayer() && onGround())
         {
-            animator.SetBool("isWalking", false);
-            animator.SetTrigger("isAttacking");
+            //animator.SetBool("isWalking", false);
+            //animator.SetTrigger("isAttacking");
             if(direction.magnitude > noMoveRange) rb.velocity = new Vector2(vel * 0.1f, 0);
         }
 
         // Pregunto si el gusano sigue con vida
         if(life <= 0)
         {
-            animator.SetBool("isDead", true);
+            //animator.SetBool("isDead", true);
         }
         
     }
@@ -117,7 +117,7 @@ public class ant : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         // Pregunto si el enemigo se chocó contra una pared
-        if(collisionInfo.gameObject.layer == 8 || collisionInfo.gameObject.layer == 13 || collisionInfo.gameObject.layer == 0)
+        if(collisionInfo.gameObject.layer == 8 || collisionInfo.gameObject.layer == 13 || collisionInfo.gameObject.layer == 0 || collisionInfo.gameObject.tag == "Trampolin")
         {
             orientation = !orientation;
             transform.eulerAngles += new Vector3(0, 180, 0);
@@ -160,7 +160,7 @@ public class ant : MonoBehaviour
     public void recoveryTime()
     {
         gotHit = false;
-        animator.SetBool("isWalking", true);
+        //animator.SetBool("isWalking", true);
     }
 
     // Funcion con la que desaparezco al enemigo si éste murió
@@ -171,7 +171,7 @@ public class ant : MonoBehaviour
 
     public void attackSound()
     {
-        audioSource.PlayOneShot(clipAtack);
+        //audioSource.PlayOneShot(clipAtack);
     }
 
     private bool canSeePlayer()
