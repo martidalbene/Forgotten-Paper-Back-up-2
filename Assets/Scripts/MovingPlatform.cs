@@ -52,14 +52,18 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         collision.transform.SetParent(transform);
         Debug.Log("Hola");
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.transform.SetParent(null);
+        if (collision.gameObject.name == "Lito")
+        {
+            collision.transform.SetParent(null);
+            Debug.Log("Hola");
+        }
     }
 }
