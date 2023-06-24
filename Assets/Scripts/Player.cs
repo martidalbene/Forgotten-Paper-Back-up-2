@@ -286,7 +286,7 @@ public class Player : MonoBehaviour
         {
             inGround = false;
         }*/
-        if(collisionInfo.gameObject.tag == "scarab" || collisionInfo.gameObject.tag == "ant")
+        if(collisionInfo.gameObject.tag == "ant")
         {
             transform.position = respawn.transform.position;
         }
