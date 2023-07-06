@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     private int LookingAt; // Controlo hacia donde estoy mirando (Izquierda o Derecha)
 
     public bool water = false; // Controlador de si Lito tocó o no el agua
+    public bool Dirty = false;
+    private float dirtyTimer;
 
     //private bool inGround = true; // Variable para controlar si Lito está en el suelo o en una plataforma, y no en el aire
     public float AvionlitoSpeed; // Velocidad de Lito transformado en avion 
@@ -31,8 +33,9 @@ public class Player : MonoBehaviour
     public bool IsAvionlito = false; // Controlo si estoy transformado en Avion
 
     public Rigidbody2D rb; // El Rigidbody de Lito
-    private SpriteRenderer mySpriteRenderer; // Renderer de Lito
+    public SpriteRenderer mySpriteRenderer; // Renderer de Lito
     private AnimationLito animLito; // Clase de Animación de Lito
+
 
     public Transform respawn; // Punto de Re-Aparición de Lito 
     private Vector2 MoveDirection; // Dirección en la que Lito se mueve
@@ -46,13 +49,14 @@ public class Player : MonoBehaviour
     private bool jumpOutOfTheWater = false;
     public bool GrandpaIsTalking = false;
 
-
+    private FadeColor fadeColor;
     // Start is called before the first frame update
     void Start()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         animLito = FindObjectOfType<AnimationLito>();
+        fadeColor = GetComponent<FadeColor>();
 
         validTags.Add("floor");
         validTags.Add("OneWayPlatform");
@@ -71,6 +75,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         flip(); // Giro al personaje cuando vaya hacia el otro lado
+        dirtyWater();
         moveX = Input.GetAxisRaw("Horizontal"); // Movimiento Horizontal
     }
 
@@ -138,6 +143,31 @@ public class Player : MonoBehaviour
     {
         jumpOutOfTheWater = true;
         rb.AddForce(Vector2.up * JumpForce * 1.8f, ForceMode2D.Impulse);
+    }
+
+    void dirtyWater()
+    {
+        if (Dirty)
+        {
+            fadeColor.FadeToGreen();
+            dirtyTimer += Time.deltaTime;
+        }
+        else
+        {
+            fadeColor.FadeToWhite();
+            dirtyTimer -= Time.deltaTime;
+        }
+
+        if(dirtyTimer >= 5)
+        {
+            transform.position = respawn.transform.position;
+            dirtyTimer = 0;
+            water = false;
+        }
+        else if(dirtyTimer < 0)
+        {
+            dirtyTimer = 0;
+        }
     }
 
     // Método para dar vuelta al personaje
@@ -304,11 +334,15 @@ public class Player : MonoBehaviour
             GameManager.Instance.recolectados++;
             Destroy(other.gameObject);
         }
+        if (other.gameObject.tag == "DirtyWater" && IsBarlito)
+        {
+            Dirty = true;
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Water" && IsBarlito)   
+        if ((other.gameObject.tag == "Water" || other.gameObject.tag == "DirtyWater") && IsBarlito)   
         {
             water = true;
             rb.gravityScale = 2f;
@@ -316,7 +350,7 @@ public class Player : MonoBehaviour
             else if (moveX == 0) speed = BarlitoSpeed;
             AudioManager.Instance.Play("water");
         }
-        if (other.gameObject.tag == "Water" && !IsBarlito)
+        if ((other.gameObject.tag == "Water" || other.gameObject.tag == "DirtyWater") && !IsBarlito)
         {
             transform.position = respawn.transform.position;
             water = false;
@@ -325,7 +359,7 @@ public class Player : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Water" && IsBarlito && jumpOutOfTheWater)
+        if((other.gameObject.tag == "Water" || other.gameObject.tag == "DirtyWater") && IsBarlito && jumpOutOfTheWater)
         {
             TransformTo = 0;
             water = false;
@@ -334,6 +368,10 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y); //reseteo velocidades en X y no en Y
             StatChange();
             animLito.TransformingLito();
+        }
+        if(other.gameObject.tag == "DirtyWater")
+        {
+            Dirty = false;
         }
     }
 
