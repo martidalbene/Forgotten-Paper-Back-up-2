@@ -111,9 +111,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5641485834138878380}
   - component: {fileID: 5641485834138878381}
-  - component: {fileID: 5641485834138878379}
   - component: {fileID: 5641485834138878378}
   - component: {fileID: 5641485834138878377}
+  - component: {fileID: 7942035028594284231}
   m_Layer: 0
   m_Name: Escarabajo
   m_TagString: scarab
@@ -189,30 +189,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5641485834138878379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5641485834138878382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f99e3e1e540d542bf56017c8fbd4e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vel: 5
-  rayCastDist: 2
-  rayCastWallDist: -0.1
-  contactsPiso:
-    serializedVersion: 2
-    m_Bits: 64
-  contactWall:
-    serializedVersion: 2
-    m_Bits: 128
-  rayPoint: {fileID: 5641485834255397959}
-  rayView: {fileID: 5641485833346722962}
-  orientation: 1
 --- !u!50 &5641485834138878378
 Rigidbody2D:
   serializedVersion: 4
@@ -250,6 +226,30 @@ CapsuleCollider2D:
   m_Offset: {x: -0.0000000055308984, y: -0.23198272}
   m_Size: {x: 1.0000002, y: 1.4554855}
   m_Direction: 1
+--- !u!114 &7942035028594284231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5641485834138878382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dd7657ef2681174c8962412b79d6595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vel: 5
+  rayCastDist: 1
+  rayCastWallDist: -0.1
+  contactsPiso:
+    serializedVersion: 2
+    m_Bits: 64
+  contactWall:
+    serializedVersion: 2
+    m_Bits: 128
+  rayPoint: {fileID: 5641485834255397959}
+  rayView: {fileID: 5641485833346722962}
+  orientation: 0
 --- !u!1 &5641485834255398008
 GameObject:
   m_ObjectHideFlags: 0

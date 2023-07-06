@@ -60,18 +60,6 @@ public class Scarab : MonoBehaviour
         Gizmos.DrawLine(rayView.position, rayView.position - transform.right * rayCastWallDist);
     }
 
-
-    /*void OnCollisionEnter2D(Collision2D collisionInfo)
-    {
-        // Pregunto si el enemigo se chocó contra una pared
-        if(collisionInfo.gameObject.layer == 7)
-        {
-            Debug.Log("Choque Pared");
-            orientation = !orientation;
-            transform.eulerAngles += new Vector3(0, 180, 0);
-        }
-    }*/
-
     // Función con la que controlo el patrullaje del enemigo
     private void walk()
     {
@@ -83,17 +71,6 @@ public class Scarab : MonoBehaviour
         {
             rb.velocity = new Vector2(-vel, 0);
         }
-    }
-    
-    private void dontWalk()
-    {
-        rb.velocity = new Vector2(0, 0);
-    }
-
-    // Funcion con la que desaparezco al enemigo si éste murió
-    public void died()
-    {
-        Destroy(gameObject);
     }
 
     private bool onGround()

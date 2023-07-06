@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8928269191245111589}
   - component: {fileID: 8928269191245111590}
   - component: {fileID: 8928269191245111588}
+  - component: {fileID: 7991929674312445539}
   m_Layer: 0
   m_Name: Platform
   m_TagString: OneWayPlatform
@@ -129,6 +130,21 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &7991929674312445539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928269191245111584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb8179886f03e240be246b34239545c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 8928269192253283564}
+  end: {fileID: 8928269192016037848}
+  Speed: 1
 --- !u!1 &8928269191829126894
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +154,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8928269191829126892}
-  - component: {fileID: 8928269191829126893}
   m_Layer: 0
   m_Name: MovingPlatform
   m_TagString: Untagged
@@ -163,22 +178,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8928269191829126893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8928269191829126894}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb8179886f03e240be246b34239545c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Platform: {fileID: 8928269191245111591}
-  start: {fileID: 8928269192253283564}
-  end: {fileID: 8928269192016037848}
-  Speed: 1
 --- !u!1 &8928269192016037849
 GameObject:
   m_ObjectHideFlags: 0
