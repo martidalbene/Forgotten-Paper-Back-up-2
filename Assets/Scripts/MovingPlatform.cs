@@ -17,7 +17,7 @@ public class MovingPlatform : MonoBehaviour
     {
         Vector2 target = CurrentMovementTarget();
 
-        transform.position = Vector2.Lerp(transform.position, target, Speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target, Speed * Time.deltaTime);
 
         float distance = (target - (Vector2)transform.position).magnitude;
 

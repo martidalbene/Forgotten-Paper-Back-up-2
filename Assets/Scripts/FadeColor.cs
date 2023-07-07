@@ -28,4 +28,5 @@ public class FadeColor : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().color = startcolor;
     }
+
 }

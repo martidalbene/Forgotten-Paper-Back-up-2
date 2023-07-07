@@ -49,14 +49,12 @@ public class Player : MonoBehaviour
     private bool jumpOutOfTheWater = false;
     public bool GrandpaIsTalking = false;
 
-    private FadeColor fadeColor;
     // Start is called before the first frame update
     void Start()
     {
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         animLito = FindObjectOfType<AnimationLito>();
-        fadeColor = GetComponent<FadeColor>();
 
         validTags.Add("floor");
         validTags.Add("OneWayPlatform");
@@ -149,18 +147,22 @@ public class Player : MonoBehaviour
     {
         if (Dirty)
         {
-            fadeColor.FadeToGreen();
             dirtyTimer += Time.deltaTime;
         }
         else
         {
-            fadeColor.FadeToWhite();
-            dirtyTimer -= Time.deltaTime;
+            dirtyTimer = 0;
         }
 
         if(dirtyTimer >= 5)
         {
             transform.position = respawn.transform.position;
+            TransformTo = 0;
+            IsBarlito = false;
+            IsAvionlito = false;
+            rb.velocity = new Vector2(0, rb.velocity.y); //reseteo velocidades en X y no en Y
+            StatChange();
+            animLito.TransformingLito();
             dirtyTimer = 0;
             water = false;
         }
@@ -298,6 +300,8 @@ public class Player : MonoBehaviour
             //inGround = true;
             jumpOutOfTheWater = false;
         }
+        if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "scarab" || collision.gameObject.tag == "fly") transform.position = respawn.transform.position;
+
     }
 
     private void OnCollisionExit2D(Collision2D collisionInfo)
@@ -306,19 +310,12 @@ public class Player : MonoBehaviour
         if (collisionInfo.gameObject.tag == "Water" && IsBarlito)   
         {
             water = false;
+            animLito.animator.SetBool("DirtyWater", false);
             speed = BarlitoSpeed;
         }
         if (validTags.Contains(collisionInfo.gameObject.tag))
         {
             CanJump = false;
-        }
-        /*if(collisionInfo.gameObject.tag == "floor")
-        {
-            inGround = false;
-        }*/
-        if(collisionInfo.gameObject.tag == "ant")
-        {
-            transform.position = respawn.transform.position;
         }
     }
 
@@ -337,6 +334,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "DirtyWater" && IsBarlito)
         {
             Dirty = true;
+            animLito.animator.SetBool("DirtyWater", true);
         }
     }
 
@@ -354,6 +352,7 @@ public class Player : MonoBehaviour
         {
             transform.position = respawn.transform.position;
             water = false;
+            animLito.animator.SetBool("DirtyWater", false);
         }
     }
 
@@ -372,6 +371,7 @@ public class Player : MonoBehaviour
         if(other.gameObject.tag == "DirtyWater")
         {
             Dirty = false;
+            animLito.animator.SetBool("DirtyWater", false);
         }
     }
 
