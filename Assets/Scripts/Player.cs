@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
     void OutOfTheWater()
     {
         jumpOutOfTheWater = true;
-        rb.AddForce(Vector2.up * JumpForce * 2f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * JumpForce * 3f, ForceMode2D.Impulse);
     }
 
     void dirtyWater()
