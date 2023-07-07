@@ -156,13 +156,7 @@ public class Player : MonoBehaviour
 
         if(dirtyTimer >= 5)
         {
-            transform.position = respawn.transform.position;
-            TransformTo = 0;
-            IsBarlito = false;
-            IsAvionlito = false;
-            rb.velocity = new Vector2(0, rb.velocity.y); //reseteo velocidades en X y no en Y
-            StatChange();
-            animLito.TransformingLito();
+            BackToSpawnPoint();
             dirtyTimer = 0;
             water = false;
         }
@@ -300,7 +294,9 @@ public class Player : MonoBehaviour
             //inGround = true;
             jumpOutOfTheWater = false;
         }
-        if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "fly" || collision.gameObject.tag == "Sprinkler" || collision.gameObject.tag == "Renacuajo") {
+        /*if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "fly" || 
+            collision.gameObject.tag == "Sprinkler" || collision.gameObject.tag == "Renacuajo" || collision.gameObject.tag == "scarab") {
+
             transform.position = respawn.transform.position;
             TransformTo = 0;
             IsBarlito = false;
@@ -308,6 +304,10 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(0, rb.velocity.y); //reseteo velocidades en X y no en Y
             StatChange();
             animLito.TransformingLito();
+        }*/
+        if(collision.gameObject.layer == 12 && rb.velocity.y < 0) {
+            rb.AddForce(Vector2.up * 15f, ForceMode2D.Impulse); // Ejerzo una fuerza sobre Lito, empujándolo hacia arriba
+            AudioManager.Instance.Play("leaf");
         }
 
     }
@@ -390,5 +390,17 @@ public class Player : MonoBehaviour
     public void PlayWalk()
     {
         AudioManager.Instance.Play("walk");
+    }
+
+    public void BackToSpawnPoint()
+    {
+        transform.position = respawn.transform.position;
+        TransformTo = 0;
+        water = false;
+        IsBarlito = false;
+        IsAvionlito = false;
+        rb.velocity = new Vector2(0, rb.velocity.y); //reseteo velocidades en X y no en Y
+        StatChange();
+        animLito.TransformingLito();
     }
 }

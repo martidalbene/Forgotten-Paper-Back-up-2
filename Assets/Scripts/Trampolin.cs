@@ -6,18 +6,6 @@ public class Trampolin : MonoBehaviour
 {
     public float pushForce;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     // Controlo si el personaje tocó la parte superior del trampolin
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
