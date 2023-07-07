@@ -8,7 +8,7 @@ public class AvionlitoEncounter : MonoBehaviour
 {
     public GameObject dialoguePanel; // El fondo donde se muestra el texto
     public Text dialogueText; // El espacio de texto donde se muestra el díalogo
-    public string[] dialogue; // Las distintas líneas de díalogo que se mostrarán
+    private string[] dialogue = {"Pilotito: Qué cielo tan hermoso, como me gustaría poder planear. Hace mucho no me sale, perdí la técnica desde el día que me perdí."}; // Las distintas líneas de díalogo que se mostrarán
     private int index; // Índice para sabér qué linea mostrar
 
     public float wordSpeed; // Tiempo en el que se va a mostrar el texto

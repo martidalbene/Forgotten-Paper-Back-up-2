@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
     private Player player; // Referencia al jugador
 
     public GameObject pauseMenu; // Referencia al menu de pausa
-    public GameObject Marinerito;
 
     public Text showTime;
     private float currentTime = 0;
@@ -47,7 +46,6 @@ public class GameManager : MonoBehaviour
         {
             player.HasBarlito = true;
             UIBarlito.sprite = Barlito;
-            Marinerito.SetActive(true);
         }
 
         if (unlockavionlito.hasAvionlito) // Si tengo la transformación del avión, se lo indico al jugador
