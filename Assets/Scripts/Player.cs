@@ -49,6 +49,12 @@ public class Player : MonoBehaviour
     private bool jumpOutOfTheWater = false;
     public bool GrandpaIsTalking = false;
 
+    private float coyoteTime = .15f;
+    private float coyoteTimeCounter; 
+
+    private float jumpBufferTime = .15f;
+    private float jumpBufferCounter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,30 +93,39 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        /*if((Input.GetKeyUp(KeyCode.A) && !Input.GetKeyDown(KeyCode.D)) || (Input.GetKeyUp(KeyCode.D) && !Input.GetKeyDown(KeyCode.A)))
+
+        if(rb.velocity.y == 0)
         {
-            AudioManager.Instance.Stop("walk");
-        }*/
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+
 
         MoveDirection = new Vector2(moveX, 0);
 
         LookingAt = (int) moveX;
 
-        if (Input.GetButtonDown("Jump") && CanJump && !GrandpaIsTalking) // Verifico si Lito está en el piso y se precionó el botón de salto
+        if (jumpBufferCounter > 0f && CanJump && !GrandpaIsTalking && coyoteTimeCounter > 0f) // Verifico si Lito está en el piso y se precionó el botón de salto
         {
             Jump();
             AudioManager.Instance.Play("jump");
+            jumpBufferCounter = 0f;
         }
-
-        /*if(moveX == 0)
+        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
-            timeToPlay = Time.time;
+            coyoteTimeCounter = 0f;
         }
-
-        if(timeToPlay + timeToCut < Time.time) 
-        {
-            stopSound = true;
-        }*/
 
         if(!CanJump)
         {
@@ -294,17 +309,11 @@ public class Player : MonoBehaviour
             //inGround = true;
             jumpOutOfTheWater = false;
         }
-        /*if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "fly" || 
-            collision.gameObject.tag == "Sprinkler" || collision.gameObject.tag == "Renacuajo" || collision.gameObject.tag == "scarab") {
+        if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "fly" || 
+            collision.gameObject.tag == "Sprinkler" || collision.gameObject.tag == "Renacuajo") {
 
-            transform.position = respawn.transform.position;
-            TransformTo = 0;
-            IsBarlito = false;
-            IsAvionlito = false;
-            rb.velocity = new Vector2(0, rb.velocity.y); //reseteo velocidades en X y no en Y
-            StatChange();
-            animLito.TransformingLito();
-        }*/
+            BackToSpawnPoint();
+        }
         if(collision.gameObject.layer == 12 && rb.velocity.y < 0) {
             rb.AddForce(Vector2.up * 15f, ForceMode2D.Impulse); // Ejerzo una fuerza sobre Lito, empujándolo hacia arriba
             AudioManager.Instance.Play("leaf");
@@ -321,7 +330,7 @@ public class Player : MonoBehaviour
             animLito.animator.SetBool("DirtyWater", false);
             speed = BarlitoSpeed;
         }
-        if (validTags.Contains(collisionInfo.gameObject.tag))
+        if (validTags.Contains(collisionInfo.gameObject.tag) && coyoteTimeCounter <= 0)
         {
             CanJump = false;
         }
