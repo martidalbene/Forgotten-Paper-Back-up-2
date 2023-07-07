@@ -5,7 +5,7 @@ using UnityEngine;
 public class OneWayPlatform : MonoBehaviour
 {
     private GameObject currentOneWayPlatfrom;
-    [SerializeField] private BoxCollider2D playerCollider;
+    public BoxCollider2D playerCollider;
 
     // Update is called once per frame
     void Update()
@@ -42,9 +42,11 @@ public class OneWayPlatform : MonoBehaviour
     // Corrutina para saber cuándo tengo que deshabilitar la plataforma
     private IEnumerator DisableCollision()
     {
+        Debug.Log(playerCollider);
         BoxCollider2D platformCollider = currentOneWayPlatfrom.GetComponent<BoxCollider2D>();
 
         Physics2D.IgnoreCollision(playerCollider, platformCollider);
+
         yield return new WaitForSeconds(0.75f);
         Physics2D.IgnoreCollision(playerCollider, platformCollider, false);
     }

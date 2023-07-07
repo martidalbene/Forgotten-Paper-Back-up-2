@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
     void OutOfTheWater()
     {
         jumpOutOfTheWater = true;
-        rb.AddForce(Vector2.up * JumpForce * 1.8f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * JumpForce * 2f, ForceMode2D.Impulse);
     }
 
     void dirtyWater()
@@ -300,7 +300,7 @@ public class Player : MonoBehaviour
             //inGround = true;
             jumpOutOfTheWater = false;
         }
-        if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "scarab" || collision.gameObject.tag == "fly") transform.position = respawn.transform.position;
+        if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "scarab" || collision.gameObject.tag == "fly" || collision.gameObject.tag == "Sprinkler") transform.position = respawn.transform.position;
 
     }
 
