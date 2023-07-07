@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dd7657ef2681174c8962412b79d6595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vel: 5
+  vel: 6
   rayCastDist: 1
   rayCastWallDist: -1.4
   contactsPiso:
