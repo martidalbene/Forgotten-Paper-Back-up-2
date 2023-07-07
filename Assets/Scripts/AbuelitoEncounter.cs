@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class AbuelitoEncounter : MonoBehaviour
 {
@@ -66,6 +67,7 @@ public class AbuelitoEncounter : MonoBehaviour
         dialoguePanel.SetActive(false);
         pj.GrandpaIsTalking = false;
         nextDialogue = true;
+        Array.Clear(dialogue,0,dialogue.Length);
     }
 
     // Corrutina para mostrar la línea de diálogo actual

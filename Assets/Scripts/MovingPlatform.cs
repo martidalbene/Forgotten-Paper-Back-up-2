@@ -52,7 +52,6 @@ public class MovingPlatform : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         collisionInfo.transform.SetParent(transform);
-        Debug.Log("Hola");
     }
     
     void OnCollisionExit2D(Collision2D collisionInfo)
@@ -60,7 +59,6 @@ public class MovingPlatform : MonoBehaviour
         if (collisionInfo.gameObject.name == "Lito")
         {
             collisionInfo.transform.SetParent(null);
-            Debug.Log("Hola");
         }
     }
 }

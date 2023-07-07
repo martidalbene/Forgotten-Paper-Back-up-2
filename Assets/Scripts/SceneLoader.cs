@@ -9,6 +9,8 @@ public class SceneLoader : MonoBehaviour
 {
     public static SceneLoader Instance;
 
+    public Animator transition;
+
     void Awake()
     {
         if(Instance == null) Instance = this;
@@ -19,13 +21,13 @@ public class SceneLoader : MonoBehaviour
     public void nextScene() 
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     // Cargo la escena del Menú Principal
     public void mainMenu()
     {
-        SceneManager.LoadScene(0);
+        StartCoroutine(LoadLevel(0));
     }
 
     // Cierro el juego
@@ -33,4 +35,14 @@ public class SceneLoader : MonoBehaviour
     {
         Application.Quit();
     }
+
+    IEnumerator LoadLevel(int levelIndex)
+    {
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1);
+
+        SceneManager.LoadScene(levelIndex);
+    }
+
 }

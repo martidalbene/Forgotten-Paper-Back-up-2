@@ -16,7 +16,8 @@ public class CameraMovement : MonoBehaviour
 
     void following()
     {
-        if(target.position.y > 7.3 && !onPoint) offset.y = -2f; // Si el jugador alcanza cierta altura, muevo la cámara hacia abajo
+        if(target.position.y > 3 && target.position.y < 6 && !onPoint) offset.y = -.5f; // Si el jugador alcanza cierta altura, muevo la cámara hacia abajo
+        else if(target.position.y > 6 && target.position.y < 10 && !onPoint) offset.y = -2f;
         else if(onPoint) offset.y = -8.7f;
         else offset.y = 5.4f; // Si no, la fijo en una altura específica
         

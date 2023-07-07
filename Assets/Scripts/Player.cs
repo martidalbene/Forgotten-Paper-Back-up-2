@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
     void OutOfTheWater()
     {
         jumpOutOfTheWater = true;
-        rb.AddForce(Vector2.up * JumpForce * 3f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * JumpForce * 2.5f, ForceMode2D.Impulse);
     }
 
     void dirtyWater()
@@ -222,6 +222,7 @@ public class Player : MonoBehaviour
             IsBarlito = true;
             IsAvionlito = false;
             rb.velocity = new Vector2(0, rb.velocity.y);
+            jumpOutOfTheWater = false;
             Jump();
             StatChange();
             animLito.TransformingLito();
@@ -341,7 +342,7 @@ public class Player : MonoBehaviour
     {
         if(other.gameObject.tag == "Final")
         {
-            SceneLoader.Instance.mainMenu();
+            SceneLoader.Instance.nextScene();
         }
         if(other.gameObject.tag == "Pencil")
         {
