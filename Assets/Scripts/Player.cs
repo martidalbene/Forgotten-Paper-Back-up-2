@@ -300,7 +300,15 @@ public class Player : MonoBehaviour
             //inGround = true;
             jumpOutOfTheWater = false;
         }
-        if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "scarab" || collision.gameObject.tag == "fly" || collision.gameObject.tag == "Sprinkler") transform.position = respawn.transform.position;
+        if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "fly" || collision.gameObject.tag == "Sprinkler" || collision.gameObject.tag == "Renacuajo") {
+            transform.position = respawn.transform.position;
+            TransformTo = 0;
+            IsBarlito = false;
+            IsAvionlito = false;
+            rb.velocity = new Vector2(0, rb.velocity.y); //reseteo velocidades en X y no en Y
+            StatChange();
+            animLito.TransformingLito();
+        }
 
     }
 

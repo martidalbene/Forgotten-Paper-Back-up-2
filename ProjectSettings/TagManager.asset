@@ -18,6 +18,7 @@ TagManager:
   - fly
   - Button
   - Sprinkler
+  - Renacuajo
   layers:
   - Default
   - TransparentFX
