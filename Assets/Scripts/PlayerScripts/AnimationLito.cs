@@ -34,12 +34,12 @@ public class AnimationLito : MonoBehaviour
     //Controlo las animaciones según corresponda
     void PasiveAnimations()
     {
-        if (pjMovement.rb.velocity.y > 0 && !pjMovement.canJump)
+        if (pjMovement.rb.velocity.y > 0.1f && !pjMovement.canJump)
         {
             animator.SetBool("LitoIsJumping", true);
             animator.SetBool("LitoIsFalling", false);
         }
-        else if (pjMovement.rb.velocity.y < 0 && !pjMovement.canJump)
+        else if (pjMovement.rb.velocity.y < -.5f && !pjMovement.canJump)
         {
             animator.SetBool("LitoIsJumping", false);
             animator.SetBool("LitoIsFalling", true);

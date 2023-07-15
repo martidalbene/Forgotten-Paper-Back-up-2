@@ -23,11 +23,12 @@ public class LitoMovement : MonoBehaviour
     public SpriteRenderer mySpriteRenderer; // Renderer de Lito
 
     
-    /*private float coyoteTime = .15f;
+    private float coyoteTime = .13f;
     private float coyoteTimeCounter; 
 
     private float jumpBufferTime = .15f;
-    private float jumpBufferCounter;*/
+    private float jumpBufferCounter;
+    private bool startCountDownCoyote = false;
 
     private float speed; // Velocidad actual de Lito
     public float BarlitoJump; // Fuerza de Lito al saltar con el barco
@@ -82,39 +83,57 @@ public class LitoMovement : MonoBehaviour
 
     private void InputControler()
     {
+        if (startCountDownCoyote)
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+        if(coyoteTimeCounter <= 0f) canJump = false;
 
         if(movX != 0) CharacterMovement();
 
         else rb.velocity = new Vector2(0, rb.velocity.y);   
 
-        if (Input.GetButtonDown("Jump") && canJump)
+        if (jumpBufferCounter > 0f && canJump && coyoteTimeCounter > 0f)
         {
             Jump();
+            jumpBufferCounter = 0f;
         }
 
         lookingAt = (int)movX;
-        
         flip();
     }
 
-    void OnCollisionStay2D(Collision2D collisionInfo)
+    void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         if(collisionInfo.gameObject.tag == "floor") 
         {
             canJump = true;
             rb.velocity = new Vector2(movX * litoSpeed, 0);
+            coyoteTimeCounter = coyoteTime;
+            startCountDownCoyote = false;
         }
         if(collisionInfo.gameObject.tag == "OneWayPlatform")
-        {
+        {   
             canJump = true;
             rb.velocity = new Vector2(movX * litoSpeed, rb.velocity.y);
+            coyoteTimeCounter = coyoteTime;
+            startCountDownCoyote = false;
         }
     }
 
     void OnCollisionExit2D(Collision2D collisionInfo)
     {
-        if(collisionInfo.gameObject.tag == "floor" || collisionInfo.gameObject.tag == "OneWayPlatform") {
-            canJump = false;
+        if((collisionInfo.gameObject.tag == "floor" || collisionInfo.gameObject.tag == "OneWayPlatform")) {
+            Debug.Log("Deje de tocar piso");
+            startCountDownCoyote = true;
         }
     }
 
