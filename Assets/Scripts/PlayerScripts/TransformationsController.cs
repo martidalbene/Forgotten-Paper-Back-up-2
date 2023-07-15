@@ -18,7 +18,7 @@ public class TransformationsController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CharacterChange();
     }
 
     void CharacterChange()

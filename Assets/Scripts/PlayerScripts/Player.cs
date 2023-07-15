@@ -349,7 +349,7 @@ public class Player : MonoBehaviour
         }
         if(other.gameObject.tag == "Pencil")
         {
-            GameManager.Instance.recolectados++;
+            //GameManager.Instance.recolectados++;
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "DirtyWater" && IsBarlito)
