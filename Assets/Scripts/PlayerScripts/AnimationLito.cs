@@ -25,8 +25,6 @@ public class AnimationLito : MonoBehaviour
         if (!pj.IsAvionlito && !pj.IsBarlito)
         {
             animator.SetBool("LitoIsWalking", Mov);
-            //animator.SetFloat("LitoVelocityY", rb.velocity.y);
-            //animator.SetFloat("LitoVelocityX", rb.velocity.x);
             PasiveAnimations();
         }
 

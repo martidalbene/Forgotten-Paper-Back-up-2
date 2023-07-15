@@ -39,7 +39,6 @@ public class patrolEnemy : MonoBehaviour
         {
             transform.eulerAngles += new Vector3(0, 180, 0);
             orientation = !orientation;
-            Debug.Log("Cambio de sentido");
         }
 
         walk();
@@ -106,8 +105,6 @@ public class patrolEnemy : MonoBehaviour
         {
             val = false;
         }
-
-        Debug.Log(val);
 
         return val;
     }

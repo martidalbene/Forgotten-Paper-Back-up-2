@@ -23,11 +23,11 @@ public class LitoMovement : MonoBehaviour
     public SpriteRenderer mySpriteRenderer; // Renderer de Lito
 
     
-    private float coyoteTime = .2f;
+    /*private float coyoteTime = .15f;
     private float coyoteTimeCounter; 
 
     private float jumpBufferTime = .15f;
-    private float jumpBufferCounter;
+    private float jumpBufferCounter;*/
 
     private float speed; // Velocidad actual de Lito
     public float BarlitoJump; // Fuerza de Lito al saltar con el barco
@@ -82,42 +82,22 @@ public class LitoMovement : MonoBehaviour
 
     private void InputControler()
     {
-        if(rb.velocity.y == 0)
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
 
         if(movX != 0) CharacterMovement();
 
         else rb.velocity = new Vector2(0, rb.velocity.y);   
 
-        if (jumpBufferCounter > 0f && canJump && coyoteTimeCounter > 0f)
+        if (Input.GetButtonDown("Jump") && canJump)
         {
             Jump();
-            jumpBufferCounter = 0f;
-        }
-        if(Input.GetButtonUp("Jump") && rb.velocity.y > 0)
-        {
-            coyoteTimeCounter = 0f;
         }
 
         lookingAt = (int)movX;
+        
         flip();
     }
 
-    void OnCollisionEnter2D(Collision2D collisionInfo)
+    void OnCollisionStay2D(Collision2D collisionInfo)
     {
         if(collisionInfo.gameObject.tag == "floor") 
         {
@@ -133,7 +113,9 @@ public class LitoMovement : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D collisionInfo)
     {
-        if((collisionInfo.gameObject.tag == "floor" || collisionInfo.gameObject.tag == "OneWayPlatform") && coyoteTimeCounter <= 0f) canJump = false;
+        if(collisionInfo.gameObject.tag == "floor" || collisionInfo.gameObject.tag == "OneWayPlatform") {
+            canJump = false;
+        }
     }
 
     void CharacterMovement()
