@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LitoMovement : MonoBehaviour
 {
+    public Lito pj;
 
     public Rigidbody2D rb;
 
@@ -13,7 +14,9 @@ public class LitoMovement : MonoBehaviour
 
     public float JumpForce;
 
-    private bool canJump;
+    public bool canJump;
+    
+    public bool jumpOutOfTheWater = false;
 
     private int lookingAt;
     
@@ -26,7 +29,13 @@ public class LitoMovement : MonoBehaviour
     private float jumpBufferTime = .15f;
     private float jumpBufferCounter;
 
-    public Transform spawnPoint;
+    private float speed; // Velocidad actual de Lito
+    public float BarlitoJump; // Fuerza de Lito al saltar con el barco
+    public float BarlitoSpeed; // Velocidad de Lito transformado en Barco estando en el piso
+    public float BarlitoWaterMaxSpeed; // Velocidad de Lito transformado en Barco estando en el agua
+    private float BarlitoWaterAcceleration = 5f; // Velocidad máxima que puede alcanzar el barco en el agua
+    public float AvionlitoSpeed; // Velocidad de Lito transformado en avion 
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,10 +55,16 @@ public class LitoMovement : MonoBehaviour
         InputControler();
     }
 
-    void Jump()
+    public void Jump()
     {
         canJump = false;
         rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+    }
+
+    public void OutOfTheWater()
+    {
+        jumpOutOfTheWater = true;
+        rb.AddForce(Vector2.up * JumpForce * 2.5f, ForceMode2D.Impulse);
     }
 
     void flip()
@@ -85,6 +100,7 @@ public class LitoMovement : MonoBehaviour
         }
 
         if(movX != 0) CharacterMovement();
+
         else rb.velocity = new Vector2(0, rb.velocity.y);   
 
         if (jumpBufferCounter > 0f && canJump && coyoteTimeCounter > 0f)
@@ -124,10 +140,10 @@ public class LitoMovement : MonoBehaviour
     {
         rb.velocity = new Vector2(movX * litoSpeed, rb.velocity.y);
 
-        /*if (IsAvionlito) // Si el personaje es Avionlito, su velocidad cambia
+        if (pj.IsAvionlito) // Si el personaje es Avionlito, su velocidad cambia
         {
-            rb.velocity = new Vector2(LookingAt * AvionlitoSpeed, -1f); //velocidad constante cuando te toca el avion
-        }*/
+            rb.velocity = new Vector2(lookingAt * AvionlitoSpeed, -1f); //velocidad constante cuando te toca el avion
+        }
     }
 
     /*void OutOfTheWater()
@@ -136,15 +152,28 @@ public class LitoMovement : MonoBehaviour
         rb.AddForce(Vector2.up * JumpForce * 2.5f, ForceMode2D.Impulse);
     }*/
 
-    public void BackToSpawnPoint()
+    public void StatChange()
     {
-        transform.position = spawnPoint.transform.position;
-        /*TransformTo = 0;
-        water = false;
-        IsBarlito = false;
-        IsAvionlito = false;
-        rb.velocity = new Vector2(0, rb.velocity.y); //reseteo velocidades en X y no en Y
-        StatChange();
-        animLito.TransformingLito();*/
+        // Si Lito está en su estado de Lito, se le asignan las variables predeterminadas
+        if (!pj.IsBarlito && !pj.IsAvionlito)
+        {
+            speed = litoSpeed;
+            JumpForce = litoSpeed;
+            rb.gravityScale = 2;
+        }
+
+        // Si Lito es un barco, verifico si está en el agua o no, y le asigno su velocidad y gravedad
+        if (pj.IsBarlito)
+        {
+            if(pj.water && speed < BarlitoWaterMaxSpeed) 
+            {
+                speed += BarlitoWaterAcceleration * Time.deltaTime;
+            }
+            else{
+                speed = BarlitoSpeed;
+            }
+            JumpForce = BarlitoJump;
+            rb.gravityScale = 2.5f;
+        }
     }
 }

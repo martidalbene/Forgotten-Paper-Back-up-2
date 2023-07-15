@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class AnimationLito : MonoBehaviour
 {
-    public Player player; // Referencia del jugador
+    public Lito pj; // Referencia del jugador
+    public LitoMovement pjMovement;
     public Animator animator; // Referencia del animator
     private Rigidbody2D rb; // Referencia del RigidBody
 
@@ -14,18 +15,18 @@ public class AnimationLito : MonoBehaviour
     {
         //player = FindObjectOfType<Player>();
         animator = GetComponent<Animator>();
-        rb = player.rb;
+        rb = pjMovement.rb;
     }
 
     // Update is called once per frame
     void Update()
     {
         // Si soy Lito, y me muevo, activo la caminata
-        if (!player.IsAvionlito && !player.IsBarlito)
+        if (!pj.IsAvionlito && !pj.IsBarlito)
         {
-            animator.SetBool("LitoIsWalking", Mov == true);
-            animator.SetFloat("LitoVelocityY", rb.velocity.y);
-            animator.SetFloat("LitoVelocityX", rb.velocity.x);
+            animator.SetBool("LitoIsWalking", Mov);
+            //animator.SetFloat("LitoVelocityY", rb.velocity.y);
+            //animator.SetFloat("LitoVelocityX", rb.velocity.x);
             PasiveAnimations();
         }
 
@@ -35,17 +36,17 @@ public class AnimationLito : MonoBehaviour
     //Controlo las animaciones según corresponda
     void PasiveAnimations()
     {
-        if (player.rb.velocity.y > 0)
+        if (pjMovement.rb.velocity.y > 0 && !pjMovement.canJump)
         {
             animator.SetBool("LitoIsJumping", true);
             animator.SetBool("LitoIsFalling", false);
         }
-        else if (player.rb.velocity.y < 0)
+        else if (pjMovement.rb.velocity.y < 0 && !pjMovement.canJump)
         {
             animator.SetBool("LitoIsJumping", false);
             animator.SetBool("LitoIsFalling", true);
         }
-        else if (player.rb.velocity.y == 0)
+        else if (pjMovement.canJump)
         {
             animator.SetBool("LitoIsJumping", false);
             animator.SetBool("LitoIsFalling", false);
@@ -55,7 +56,7 @@ public class AnimationLito : MonoBehaviour
     // Reviso si debo ejecutar la animación de caminata
     private void WalkingAnim()
     {
-        if(rb.velocity.x != 0)
+        if(pjMovement.movX != 0)
         {
             Mov = true;
         }
@@ -69,13 +70,13 @@ public class AnimationLito : MonoBehaviour
     public void TransformingLito()
     {
         // Activo la animación de transición
-        if(player.IsBarlito || player.IsAvionlito)
+        if(pj.IsBarlito || pj.IsAvionlito)
         {
             animator.SetTrigger("LitoTransforming");
         }
         
 
-        switch (player.TransformTo)
+        switch (pj.TransformTo)
         {
             case 1: // Activo la animación para transformarme en Avion
                 animator.SetBool("TransformAvionlito", true);
@@ -83,11 +84,11 @@ public class AnimationLito : MonoBehaviour
                 animator.SetBool("TransformLito", false);
                 break;
             case 0: // Activo la animacion para volver a ser Lito
-                if (!player.IsAvionlito)
+                if (!pj.IsAvionlito)
                 {
                     animator.SetBool("TransformLito", true);
                 }
-                else if (!player.IsBarlito)
+                else if (!pj.IsBarlito)
                 {
                     animator.SetBool("TransformLito", true);
                 }

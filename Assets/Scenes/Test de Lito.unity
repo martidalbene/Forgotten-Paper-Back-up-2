@@ -297,8 +297,12 @@ GameObject:
   - component: {fileID: 453983023}
   - component: {fileID: 453983027}
   - component: {fileID: 453983026}
+  - component: {fileID: 453983032}
   - component: {fileID: 453983025}
+  - component: {fileID: 453983030}
+  - component: {fileID: 453983031}
   - component: {fileID: 453983028}
+  - component: {fileID: 453983029}
   m_Layer: 8
   m_Name: Lito
   m_TagString: Player
@@ -365,7 +369,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453983022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.38, y: 1.24, z: 0}
+  m_LocalPosition: {x: 12.54, y: 28.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -383,12 +387,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f0e09e540e0f364bb4f8640f9c3df20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  pj: {fileID: 453983032}
+  rb: {fileID: 453983026}
   movX: 0
   litoSpeed: 10
   JumpForce: 12
-  mySpriteRenderer: {fileID: 0}
-  spawnPoint: {fileID: 4632483}
+  canJump: 0
+  jumpOutOfTheWater: 0
+  mySpriteRenderer: {fileID: 453983023}
+  BarlitoJump: 6
+  BarlitoSpeed: 4
+  BarlitoWaterMaxSpeed: 15
+  AvionlitoSpeed: 12
 --- !u!50 &453983026
 Rigidbody2D:
   serializedVersion: 4
@@ -410,8 +420,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &453983027
-CapsuleCollider2D:
+--- !u!61 &453983027
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -423,9 +433,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.2558048}
-  m_Size: {x: 1.53, y: 2.4091048}
-  m_Direction: 0
+  m_Offset: {x: -0.031030178, y: 1.2558546}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 1.53, y: 2.4603567}
+    newSize: {x: 1.53, y: 2.4603567}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1409025, y: 2.2634678}
+  m_EdgeRadius: 0
 --- !u!114 &453983028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +459,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCollider: {fileID: 0}
+--- !u!95 &453983029
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453983022}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e972c120bb7eb24f95049231b7e7ff7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &453983030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453983022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdc2d81533fd5140a1bff76a59f2364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pj: {fileID: 453983032}
+  pjMovement: {fileID: 453983025}
+  animator: {fileID: 453983029}
+--- !u!114 &453983031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453983022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f668d1bdd9c94a14f9c2fc5c6f50fd03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pj: {fileID: 453983032}
+  pjMovement: {fileID: 453983025}
+  animLito: {fileID: 453983030}
+--- !u!114 &453983032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453983022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dae2117ab9ac864a8de2d75fa44e60a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pjMovement: {fileID: 453983025}
+  animLito: {fileID: 453983030}
+  water: 0
+  Dirty: 0
+  HasBarlito: 0
+  IsBarlito: 0
+  HasAvionlito: 0
+  IsAvionlito: 0
+  TransformTo: 0
+  GrandpaIsTalking: 0
+  spawnPoint: {fileID: 4632483}
 --- !u!1001 &570894107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -964,7 +1056,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5362874736288980641, guid: f9b1c2309c8bb874f82cce8ecccd36b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f9b1c2309c8bb874f82cce8ecccd36b9, type: 3}
 --- !u!1 &1065307737 stripped
 GameObject:
@@ -976,6 +1069,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9188722084808124444, guid: f9b1c2309c8bb874f82cce8ecccd36b9, type: 3}
   m_PrefabInstance: {fileID: 1065307736}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1065307740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065307737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36fb327296dd6469fa455cbad6df10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1139264964
 PrefabInstance:
   m_ObjectHideFlags: 0

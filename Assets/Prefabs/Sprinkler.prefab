@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 9188722084808124444}
   - component: {fileID: 1096114466095590164}
   - component: {fileID: 7663091635976383044}
-  - component: {fileID: 5362874736288980641}
   - component: {fileID: 4328924668066851440}
+  - component: {fileID: 1609920325143225321}
   m_Layer: 0
   m_Name: Sprinkler
   m_TagString: Sprinkler
@@ -111,18 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5866852, y: 5.562133}
   m_EdgeRadius: 0
---- !u!114 &5362874736288980641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049926335894588976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8770f93e8551e10499a36aaf251b8779, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &4328924668066851440
 Animator:
   serializedVersion: 3
@@ -142,3 +130,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1609920325143225321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049926335894588976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a36fb327296dd6469fa455cbad6df10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

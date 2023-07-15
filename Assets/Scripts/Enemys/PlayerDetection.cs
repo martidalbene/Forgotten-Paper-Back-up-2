@@ -8,7 +8,7 @@ public class PlayerDetection : MonoBehaviour
     {
         if(collisionInfo.gameObject.tag == "Player") 
         {
-            LitoMovement lito = collisionInfo.gameObject.GetComponent<LitoMovement>();
+            Lito lito = collisionInfo.gameObject.GetComponent<Lito>();
 
             lito.BackToSpawnPoint();
         }
