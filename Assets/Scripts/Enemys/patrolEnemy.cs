@@ -107,6 +107,8 @@ public class patrolEnemy : MonoBehaviour
             val = false;
         }
 
+        Debug.Log(val);
+
         return val;
     }
 }

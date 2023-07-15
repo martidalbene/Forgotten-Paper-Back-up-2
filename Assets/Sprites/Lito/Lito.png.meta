@@ -119,6 +119,123 @@ TextureImporter:
   - first:
       213: 6077751805537155827
     second: Sprites_38
+  - first:
+      213: -3389316095458873594
+    second: Lito_0
+  - first:
+      213: 7146769400783889267
+    second: Lito_1
+  - first:
+      213: -6470559738738873497
+    second: Lito_2
+  - first:
+      213: 2581341866220144466
+    second: Lito_3
+  - first:
+      213: 1137345592446797552
+    second: Lito_4
+  - first:
+      213: 3671735673448789858
+    second: Lito_5
+  - first:
+      213: 4862300601652871364
+    second: Lito_6
+  - first:
+      213: 421710994961907384
+    second: Lito_7
+  - first:
+      213: 8267915663884382507
+    second: Lito_8
+  - first:
+      213: -7647223279724865402
+    second: Lito_9
+  - first:
+      213: 8876538323176408826
+    second: Lito_10
+  - first:
+      213: -4047543061568427184
+    second: Lito_11
+  - first:
+      213: -3067808827502971615
+    second: Lito_12
+  - first:
+      213: 8089185852592076403
+    second: Lito_13
+  - first:
+      213: -415524931477688876
+    second: Lito_14
+  - first:
+      213: -3962615117524554412
+    second: Lito_15
+  - first:
+      213: 8726281828660077191
+    second: Lito_16
+  - first:
+      213: -3313820457021795018
+    second: Lito_17
+  - first:
+      213: 4670478464670523714
+    second: Lito_18
+  - first:
+      213: -993240733638738565
+    second: Lito_19
+  - first:
+      213: 5134949697093198524
+    second: Lito_20
+  - first:
+      213: -1695662654983998521
+    second: Lito_21
+  - first:
+      213: -8525906651782747192
+    second: Lito_22
+  - first:
+      213: 6026882342859256543
+    second: Lito_23
+  - first:
+      213: -7501625996157349775
+    second: Lito_24
+  - first:
+      213: -4766433809543936679
+    second: Lito_25
+  - first:
+      213: 7174193496282057846
+    second: Lito_26
+  - first:
+      213: 6190629821891641023
+    second: Lito_27
+  - first:
+      213: -1407299591007506098
+    second: Lito_28
+  - first:
+      213: 6187802160114085992
+    second: Lito_29
+  - first:
+      213: 7401667993656987270
+    second: Lito_30
+  - first:
+      213: 1077114208516222834
+    second: Lito_31
+  - first:
+      213: 3077132001478300273
+    second: Lito_32
+  - first:
+      213: 2788296834546839560
+    second: Lito_33
+  - first:
+      213: 7435987781942386225
+    second: Lito_34
+  - first:
+      213: 9111813357914165992
+    second: Lito_35
+  - first:
+      213: 6910687929258985558
+    second: Lito_36
+  - first:
+      213: -1257544491794417863
+    second: Lito_37
+  - first:
+      213: -7418134956614582304
+    second: Lito_38
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -208,820 +325,820 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprites_0
+      name: Lito_0
       rect:
         serializedVersion: 2
         x: 7
         y: 2675
         width: 153
         height: 246
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46fdc06f40c3f3240800000000000000
-      internalID: 4773600122041589604
+      spriteID: 60fe8a2f7fab6f0d0800000000000000
+      internalID: -3389316095458873594
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_1
+      name: Lito_1
       rect:
         serializedVersion: 2
         x: 214
         y: 2675
         width: 153
         height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 962e9f57a6ca78db0800000000000000
-      internalID: -4789670105439411607
+      spriteID: 373ea51a7ec6e2360800000000000000
+      internalID: 7146769400783889267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_2
+      name: Lito_2
       rect:
         serializedVersion: 2
         x: 386
         y: 2673
         width: 153
         height: 246
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28b7e35c74f800260800000000000000
-      internalID: 7061801754131594114
+      spriteID: 76b668a3334f336a0800000000000000
+      internalID: -6470559738738873497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_3
+      name: Lito_3
       rect:
         serializedVersion: 2
         x: 558
         y: 2676
         width: 154
         height: 264
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87a4920a438bc9990800000000000000
-      internalID: -7377819553374844296
+      spriteID: 25745e330c4c2d320800000000000000
+      internalID: 2581341866220144466
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_4
+      name: Lito_4
       rect:
         serializedVersion: 2
         x: 728
         y: 2673
         width: 153
         height: 246
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 735247b715bc327f0800000000000000
-      internalID: -638443171332479689
+      spriteID: 0f6c5a85ac9a8cf00800000000000000
+      internalID: 1137345592446797552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_5
+      name: Lito_5
       rect:
         serializedVersion: 2
         x: 907
         y: 2675
         width: 154
         height: 241
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 075b0bf8ce0bc2ce0800000000000000
-      internalID: -1428572451713796752
+      spriteID: 2677b0d2420a4f230800000000000000
+      internalID: 3671735673448789858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_6
+      name: Lito_6
       rect:
         serializedVersion: 2
         x: 1075
         y: 2673
         width: 154
         height: 246
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c967250506d6cd660800000000000000
-      internalID: 7411919347176863388
+      spriteID: 4c000b8b2ac5a7340800000000000000
+      internalID: 4862300601652871364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_7
+      name: Lito_7
       rect:
         serializedVersion: 2
         x: 1258
         y: 2676
         width: 153
         height: 264
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 556f3dce3ea4ce580800000000000000
-      internalID: -8796573629370075563
+      spriteID: 8beb4946ae73ad500800000000000000
+      internalID: 421710994961907384
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_8
+      name: Lito_8
       rect:
         serializedVersion: 2
         x: 1431
         y: 2675
         width: 154
         height: 246
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb90afe52c94f2780800000000000000
-      internalID: -8705658455517951556
+      spriteID: b2177b2bd798db270800000000000000
+      internalID: 8267915663884382507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_9
+      name: Lito_9
       rect:
         serializedVersion: 2
         x: 1602
         y: 2675
         width: 154
         height: 244
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef910339304d7e270800000000000000
-      internalID: 8279819551763339774
+      spriteID: 688d6ed91fa9fd590800000000000000
+      internalID: -7647223279724865402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_10
+      name: Lito_10
       rect:
         serializedVersion: 2
         x: 1759
         y: 2675
         width: 153
         height: 244
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7796cc3a21f6a4160800000000000000
-      internalID: 7010537895803775351
+      spriteID: af64214339ccf2b70800000000000000
+      internalID: 8876538323176408826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_11
+      name: Lito_11
       rect:
         serializedVersion: 2
         x: 5
         y: 2346
         width: 154
         height: 259
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c791212689fc32c60800000000000000
-      internalID: 7792300033668422012
+      spriteID: 05bed12c70d34d7c0800000000000000
+      internalID: -4047543061568427184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_12
+      name: Lito_12
       rect:
         serializedVersion: 2
         x: 189
         y: 2342
         width: 164
         height: 273
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 532266b5fd4d12c60800000000000000
-      internalID: 7791742886103884341
+      spriteID: 125b0e51024fc65d0800000000000000
+      internalID: -3067808827502971615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_13
+      name: Lito_13
       rect:
         serializedVersion: 2
         x: 384
         y: 2345
         width: 177
         height: 285
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c88f36b21746a7500800000000000000
-      internalID: 394738354570393740
+      spriteID: 376bdd1bcaf824070800000000000000
+      internalID: 8089185852592076403
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_14
+      name: Lito_14
       rect:
         serializedVersion: 2
         x: 618
         y: 2332
         width: 188
         height: 285
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c53d050ddfc57280800000000000000
-      internalID: -9046095728324299325
+      spriteID: 4dd24ffb642cb3af0800000000000000
+      internalID: -415524931477688876
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_15
+      name: Lito_15
       rect:
         serializedVersion: 2
         x: 843
         y: 2332
         width: 164
         height: 275
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0fcaf3983aa87e60800000000000000
-      internalID: 7960299501354929935
+      spriteID: 45d2b52ab86f109c0800000000000000
+      internalID: -3962615117524554412
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_16
+      name: Lito_16
       rect:
         serializedVersion: 2
         x: 1029
         y: 2330
         width: 152
         height: 259
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 632a4d67f5f9be510800000000000000
-      internalID: 1579531326687846966
+      spriteID: 782ea3fd61bf91970800000000000000
+      internalID: 8726281828660077191
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_17
+      name: Lito_17
       rect:
         serializedVersion: 2
         x: 2
         y: 1970
         width: 130
         height: 263
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0efa027d2e534c360800000000000000
-      internalID: 7188930153578278880
+      spriteID: 6351bc90ad1f202d0800000000000000
+      internalID: -3313820457021795018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_18
+      name: Lito_18
       rect:
         serializedVersion: 2
         x: 221
         y: 1973
         width: 110
         height: 259
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ef40f11f51595cf0800000000000000
-      internalID: -263089634459758618
+      spriteID: 2416cc91b6fd0d040800000000000000
+      internalID: 4670478464670523714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_19
+      name: Lito_19
       rect:
         serializedVersion: 2
         x: 392
         y: 1974
         width: 100
         height: 253
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d3f8f2d919ac4ff20800000000000000
-      internalID: 3455609540856221501
+      spriteID: b7db30fa0dc4732f0800000000000000
+      internalID: -993240733638738565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_20
+      name: Lito_20
       rect:
         serializedVersion: 2
         x: 544
         y: 1970
         width: 111
         height: 260
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8edddc0acf2ec480800000000000000
-      internalID: -8877105270654902643
+      spriteID: cb26dba1b81034740800000000000000
+      internalID: 5134949697093198524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_21
+      name: Lito_21
       rect:
         serializedVersion: 2
         x: 702
         y: 1971
         width: 130
         height: 265
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2928593c5b67c41f0800000000000000
-      internalID: -1059341289296395630
+      spriteID: 7c378ce9ccbc778e0800000000000000
+      internalID: -1695662654983998521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_22
+      name: Lito_22
       rect:
         serializedVersion: 2
-        x: 870
+        x: 871
         y: 1974
-        width: 156
+        width: 155
         height: 261
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1da86ee87ec906070800000000000000
-      internalID: 8097644648361003729
+      spriteID: 8cb69588215eda980800000000000000
+      internalID: -8525906651782747192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_23
+      name: Lito_23
       rect:
         serializedVersion: 2
         x: 1052
         y: 1973
         width: 177
         height: 262
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dcbcaaa3f430d8b0800000000000000
-      internalID: -5129541754429850415
+      spriteID: fd2333d1f89c3a350800000000000000
+      internalID: 6026882342859256543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_24
+      name: Lito_24
       rect:
         serializedVersion: 2
         x: 1239
         y: 1975
         width: 178
         height: 260
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 024e97f98dbd0d510800000000000000
-      internalID: 1571997993387287584
+      spriteID: 170943dd6eed4e790800000000000000
+      internalID: -7501625996157349775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_25
+      name: Lito_25
       rect:
         serializedVersion: 2
         x: 1433
         y: 1975
         width: 178
         height: 262
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14464865d417572f0800000000000000
-      internalID: -975749167277906879
+      spriteID: 955c8b034b93addb0800000000000000
+      internalID: -4766433809543936679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_26
+      name: Lito_26
       rect:
         serializedVersion: 2
         x: 1627
         y: 1974
         width: 156
         height: 261
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc989ffcded122c50800000000000000
-      internalID: 6638901707931224523
+      spriteID: 67c4fcf69fadf8360800000000000000
+      internalID: 7174193496282057846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_27
+      name: Lito_27
       rect:
         serializedVersion: 2
         x: 9
         y: 1643
         width: 154
         height: 264
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44b6be0a9d4ccf720800000000000000
-      internalID: 2881394300597005124
+      spriteID: fbe7acd060989e550800000000000000
+      internalID: 6190629821891641023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_28
+      name: Lito_28
       rect:
         serializedVersion: 2
         x: 192
         y: 1660
         width: 181
         height: 230
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2723bdb1508f4ca0800000000000000
-      internalID: -6030460287462463701
+      spriteID: e41f1796a74487ce0800000000000000
+      internalID: -1407299591007506098
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_29
+      name: Lito_29
       rect:
         serializedVersion: 2
         x: 435
         y: 1699
         width: 110
         height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0c4023299ce25c00800000000000000
-      internalID: 888032219008879629
+      spriteID: 860befdb74d7fd550800000000000000
+      internalID: 6187802160114085992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_30
+      name: Lito_30
       rect:
         serializedVersion: 2
         x: 596
         y: 1695
         width: 139
         height: 134
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3995991a3701b550800000000000000
-      internalID: 6174724510220392764
+      spriteID: 68e8d4313d108b660800000000000000
+      internalID: 7401667993656987270
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_31
+      name: Lito_31
       rect:
         serializedVersion: 2
         x: 7
         y: 1437
         width: 137
         height: 133
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99d1f6374589c1320800000000000000
-      internalID: 2530064579156712857
+      spriteID: 27fa2257aada2fe00800000000000000
+      internalID: 1077114208516222834
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_32
+      name: Lito_32
       rect:
         serializedVersion: 2
         x: 209
         y: 1411
         width: 261
         height: 146
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bd31dcb81e775b30800000000000000
-      internalID: 4276025015923719601
+      spriteID: 172d913804b24ba20800000000000000
+      internalID: 3077132001478300273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_33
+      name: Lito_33
       rect:
         serializedVersion: 2
         x: 518
         y: 1435
         width: 272
         height: 116
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45f4f7008c8ae5920800000000000000
-      internalID: 2981005580321115988
+      spriteID: 800b28fa23502b620800000000000000
+      internalID: 2788296834546839560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_34
+      name: Lito_34
       rect:
         serializedVersion: 2
         x: 865
         y: 1415
         width: 294
         height: 117
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb3e0fa1ab3e50a80800000000000000
-      internalID: -8501138333136526401
+      spriteID: 13e12d87d7fe13760800000000000000
+      internalID: 7435987781942386225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_35
+      name: Lito_35
       rect:
         serializedVersion: 2
         x: 5
         y: 1149
         width: 139
         height: 134
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49c5e1a62bf038e70800000000000000
-      internalID: 9116147329686985876
+      spriteID: 8e2122af8f9a37e70800000000000000
+      internalID: 9111813357914165992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_36
+      name: Lito_36
       rect:
         serializedVersion: 2
         x: 202
         y: 1133
         width: 261
         height: 146
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97894f3a8d1e6eb80800000000000000
-      internalID: -8365750937214216071
+      spriteID: 658cf09ae02b7ef50800000000000000
+      internalID: 6910687929258985558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_37
+      name: Lito_37
       rect:
         serializedVersion: 2
         x: 534
         y: 1123
         width: 256
         height: 173
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87da900e599158040800000000000000
-      internalID: 4649150321829457272
+      spriteID: 937385d82fd4c8ee0800000000000000
+      internalID: -1257544491794417863
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprites_38
+      name: Lito_38
       rect:
         serializedVersion: 2
         x: 868
         y: 1110
         width: 317
         height: 189
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3faf70ad013885450800000000000000
-      internalID: 6077751805537155827
+      spriteID: 0ef74175f8d7d0990800000000000000
+      internalID: -7418134956614582304
       vertices: []
       indices: 
       edges: []

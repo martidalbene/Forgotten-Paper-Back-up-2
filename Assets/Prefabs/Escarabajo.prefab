@@ -297,7 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8565975271225463220}
   - component: {fileID: 5367614156908542463}
-  - component: {fileID: 4533193263028822865}
+  - component: {fileID: 244269913295455034}
   m_Layer: 10
   m_Name: DamagePart
   m_TagString: scarab
@@ -335,7 +335,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.015937705, y: 0.47828227}
   m_Size: {x: 2.6474361, y: 0.84058374}
   m_Direction: 1
---- !u!114 &4533193263028822865
+--- !u!114 &244269913295455034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -344,6 +344,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5958875139356949935}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8770f93e8551e10499a36aaf251b8779, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a36fb327296dd6469fa455cbad6df10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
