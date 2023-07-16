@@ -43,6 +43,7 @@ public class LitoMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        speed = litoSpeed;
     }
 
     void FixedUpdate()
@@ -54,6 +55,7 @@ public class LitoMovement : MonoBehaviour
     void Update()
     {
         InputControler();
+        WaterAcceleration();
     }
 
     public void Jump()
@@ -111,47 +113,17 @@ public class LitoMovement : MonoBehaviour
         flip();
     }
 
-    void OnCollisionEnter2D(Collision2D collisionInfo)
-    {
-        if(collisionInfo.gameObject.tag == "floor") 
-        {
-            canJump = true;
-            rb.velocity = new Vector2(movX * litoSpeed, 0);
-            coyoteTimeCounter = coyoteTime;
-            startCountDownCoyote = false;
-        }
-        if(collisionInfo.gameObject.tag == "OneWayPlatform")
-        {   
-            canJump = true;
-            rb.velocity = new Vector2(movX * litoSpeed, rb.velocity.y);
-            coyoteTimeCounter = coyoteTime;
-            startCountDownCoyote = false;
-        }
-    }
 
-    void OnCollisionExit2D(Collision2D collisionInfo)
-    {
-        if((collisionInfo.gameObject.tag == "floor" || collisionInfo.gameObject.tag == "OneWayPlatform")) {
-            Debug.Log("Deje de tocar piso");
-            startCountDownCoyote = true;
-        }
-    }
 
     void CharacterMovement()
     {
-        rb.velocity = new Vector2(movX * litoSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(movX * speed, rb.velocity.y);
 
         if (pj.IsAvionlito) // Si el personaje es Avionlito, su velocidad cambia
         {
             rb.velocity = new Vector2(lookingAt * AvionlitoSpeed, -1f); //velocidad constante cuando te toca el avion
         }
     }
-
-    /*void OutOfTheWater()
-    {
-        jumpOutOfTheWater = true;
-        rb.AddForce(Vector2.up * JumpForce * 2.5f, ForceMode2D.Impulse);
-    }*/
 
     public void StatChange()
     {
@@ -166,15 +138,56 @@ public class LitoMovement : MonoBehaviour
         // Si Lito es un barco, verifico si está en el agua o no, y le asigno su velocidad y gravedad
         if (pj.IsBarlito)
         {
-            if(pj.water && speed < BarlitoWaterMaxSpeed) 
+            if (pj.water && speed < BarlitoWaterMaxSpeed)
             {
                 speed += BarlitoWaterAcceleration * Time.deltaTime;
             }
-            else{
+            else
+            {
                 speed = BarlitoSpeed;
             }
             JumpForce = BarlitoJump;
             rb.gravityScale = 2.5f;
+        }
+    }
+
+    public void WaterAcceleration()
+    {
+        if (speed < BarlitoWaterMaxSpeed && pj.water)
+        {
+            speed += BarlitoWaterAcceleration * Time.deltaTime;
+            Debug.Log("Speed");
+        }
+        else if(!pj.water && pj.IsBarlito)
+        {
+            speed = BarlitoSpeed;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collisionInfo)
+    {
+        if (collisionInfo.gameObject.tag == "floor")
+        {
+            canJump = true;
+            rb.velocity = new Vector2(movX * litoSpeed, 0);
+            coyoteTimeCounter = coyoteTime;
+            startCountDownCoyote = false;
+        }
+        if (collisionInfo.gameObject.tag == "OneWayPlatform")
+        {
+            canJump = true;
+            rb.velocity = new Vector2(movX * litoSpeed, rb.velocity.y);
+            coyoteTimeCounter = coyoteTime;
+            startCountDownCoyote = false;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collisionInfo)
+    {
+        if ((collisionInfo.gameObject.tag == "floor" || collisionInfo.gameObject.tag == "OneWayPlatform"))
+        {
+            Debug.Log("Deje de tocar piso");
+            startCountDownCoyote = true;
         }
     }
 }

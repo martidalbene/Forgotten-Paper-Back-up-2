@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7611533220419303468}
   - component: {fileID: 1422425672}
   - component: {fileID: 1422425673}
+  - component: {fileID: -1061330740271608125}
   m_Layer: 0
   m_Name: AguaSucia
   m_TagString: DirtyWater
@@ -129,3 +130,15 @@ BuoyancyEffector2D:
   m_FlowAngle: 0
   m_FlowMagnitude: 0
   m_FlowVariation: 0
+--- !u!114 &-1061330740271608125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090540231246241348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb170f033b0523e459bdd9c94d419851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

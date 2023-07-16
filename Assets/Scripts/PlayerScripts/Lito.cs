@@ -35,25 +35,26 @@ public class Lito : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        dirtyWater();
     }
 
-    void dirtyWater()
+    private void dirtyWater()
     {
         if (Dirty)
         {
             dirtyTimer += Time.deltaTime;
+            animLito.animator.SetBool("DirtyWater", true);
         }
         else
         {
             dirtyTimer = 0;
+            animLito.animator.SetBool("DirtyWater", false);
         }
 
         if(dirtyTimer >= 5)
         {
             BackToSpawnPoint();
             dirtyTimer = 0;
-            water = false;
         }
         else if(dirtyTimer < 0)
         {
