@@ -66,4 +66,19 @@ public class TransformationsController : MonoBehaviour
         }
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(pj.IsAvionlito && (collision.gameObject.tag == "floor" || collision.gameObject.tag == "OneWayPlatform"))
+        {
+            pjMovement.Jump();
+            pj.TransformTo = 0;
+            pj.IsBarlito = false;
+            pj.IsAvionlito = false;
+            pjMovement.rb.velocity = new Vector2(0, pjMovement.rb.velocity.y); //reseteo velocidades en X y no en Y
+            pjMovement.StatChange();
+            animLito.TransformingLito();
+            AudioManager.Instance.Play("transform");
+        }
+    }
 }
