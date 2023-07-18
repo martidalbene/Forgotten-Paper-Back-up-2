@@ -22,6 +22,10 @@ public class GameManager : MonoBehaviour
     public Text cantColeccionables;
     public int recolectados = 0;
 
+    public int litoDeathsCounter = 0;
+
+    public Text deathsCounter;
+
     void Awake()
     {
         if (Instance == null)
@@ -72,6 +76,7 @@ public class GameManager : MonoBehaviour
 
         UpdateTimer(currentTime);
         UpdatePencilCounter();
+        UpdateDeathsCounter();
     }
 
     // Funcion que controla si el jugador decidió seguir jugando estando en el menu de pausa
@@ -96,6 +101,14 @@ public class GameManager : MonoBehaviour
         cantColeccionables.text = recolectados.ToString();
     }
 
+    private void UpdateDeathsCounter()
+    {
+        deathsCounter.text = "Deaths: " + litoDeathsCounter.ToString();
+    }
 
+    private void FinishPointsCalculator()
+    {
+        
+    }
 
 }

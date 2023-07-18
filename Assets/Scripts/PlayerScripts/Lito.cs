@@ -64,6 +64,7 @@ public class Lito : MonoBehaviour
 
     public void BackToSpawnPoint()
     {
+        GameManager.Instance.litoDeathsCounter++;
         transform.position = spawnPoint.transform.position;
         TransformTo = 0;
         water = false;

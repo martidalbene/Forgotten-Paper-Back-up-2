@@ -27,6 +27,7 @@ public class SceneLoader : MonoBehaviour
     // Cargo la escena del Menú Principal
     public void mainMenu()
     {
+        Time.timeScale = 1f;
         StartCoroutine(LoadLevel(0));
     }
 

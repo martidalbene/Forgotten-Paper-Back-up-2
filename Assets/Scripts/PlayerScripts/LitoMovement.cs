@@ -139,7 +139,7 @@ public class LitoMovement : MonoBehaviour
         {
             speed = litoSpeed;
             JumpForce = litoJump;
-            rb.gravityScale = 2;
+            rb.gravityScale = 1.8f;
         }
 
         // Si Lito es un barco, verifico si está en el agua o no, y le asigno su velocidad y gravedad
