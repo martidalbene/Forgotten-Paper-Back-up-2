@@ -73,4 +73,22 @@ public class Lito : MonoBehaviour
         pjMovement.StatChange();
         animLito.TransformingLito();
     }
+
+    public void PlayWind()
+    {    
+        AudioManager.Instance.Play("wind");
+    }
+    public void PlayWalk()
+    {
+        AudioManager.Instance.Play("walk");
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Pencil")
+        {
+            GameManager.Instance.recolectados++;
+            Destroy(other.gameObject);
+        }
+    }
 }

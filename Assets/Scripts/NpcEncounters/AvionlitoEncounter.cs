@@ -16,7 +16,7 @@ public class AvionlitoEncounter : MonoBehaviour
 
     private bool nextDialogue = false; // Variable que controla si ya se terminó de escribir la línea de díalogo para pasar a la siguiente
     private bool firstTimeWeMeet = true; // Para saber si es la primera vez que el jugador ingresa al área para interactuar
-    public Player pj;
+    public Lito pj;
     public GameObject NextDialogLetter;
 
     // Update is called once per frame

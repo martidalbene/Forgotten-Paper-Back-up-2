@@ -21,6 +21,7 @@ public class WaterCollision : MonoBehaviour
         else if(collision.gameObject.tag == "Player" && lito.IsBarlito)
         {
             lito.water = true;
+            AudioManager.Instance.Play("water");
         }
 
         if (gameObject.tag == "DirtyWater" && collision.gameObject.tag == "Player")
@@ -28,9 +29,9 @@ public class WaterCollision : MonoBehaviour
             lito.Dirty = true;
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+
+    void OnTriggerExit2D(Collider2D other)
     {
-        lito.water = false;
-        lito.Dirty = false;
+        if(other.gameObject.tag == "Player" && lito.IsBarlito) lito.water = false;
     }
 }

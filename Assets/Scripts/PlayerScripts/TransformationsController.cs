@@ -25,7 +25,7 @@ public class TransformationsController : MonoBehaviour
     {
         if (Input.GetButtonDown("Transform Lito") && !pj.water && !pj.GrandpaIsTalking && (pj.IsBarlito || pj.IsAvionlito))
         {
-            pjMovement.Jump();
+            if(pjMovement.canJump) pjMovement.Jump();
             pj.TransformTo = 0;
             pj.IsBarlito = false;
             pj.IsAvionlito = false;
@@ -33,9 +33,10 @@ public class TransformationsController : MonoBehaviour
             pjMovement.StatChange();
             animLito.TransformingLito();
             AudioManager.Instance.Play("transform");
+            Debug.Log("Ser Lito");
         }
 
-        if (Input.GetButtonDown("Transform Lito") && pj.water && !pj.GrandpaIsTalking)
+        if (Input.GetButtonDown("Transform Lito") && pj.water && !pj.GrandpaIsTalking && !pjMovement.jumpOutOfTheWater)
         {
             pjMovement.OutOfTheWater();
             AudioManager.Instance.Play("transform");
@@ -48,7 +49,7 @@ public class TransformationsController : MonoBehaviour
             pj.IsAvionlito = false;
             pjMovement.rb.velocity = new Vector2(0, pjMovement.rb.velocity.y);
             pjMovement.jumpOutOfTheWater = false;
-            pjMovement.Jump();
+            if(pjMovement.canJump) pjMovement.Jump();
             pjMovement.StatChange();
             animLito.TransformingLito();
             AudioManager.Instance.Play("transform");
@@ -59,7 +60,7 @@ public class TransformationsController : MonoBehaviour
             pj.TransformTo = 1;
             pj.IsBarlito = false;
             pj.IsAvionlito = true;
-            pjMovement.Jump();
+            if(pjMovement.canJump) pjMovement.Jump();
             pjMovement.StatChange();
             animLito.TransformingLito();
             AudioManager.Instance.Play("transform");
@@ -79,6 +80,7 @@ public class TransformationsController : MonoBehaviour
             pjMovement.StatChange();
             animLito.TransformingLito();
             AudioManager.Instance.Play("transform");
+            AudioManager.Instance.Stop("wind");
         }
     }
 }

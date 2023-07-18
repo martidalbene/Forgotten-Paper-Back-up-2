@@ -49,16 +49,29 @@ public class MovingPlatform : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collisionInfo)
+    /*void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         collisionInfo.transform.SetParent(transform);
+    }*/
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Feet") other.transform.parent.SetParent(transform);
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Feet")
+        {
+            other.transform.parent.SetParent(null);
+        }
     }
     
-    void OnCollisionExit2D(Collision2D collisionInfo)
+    /*void OnCollisionExit2D(Collision2D collisionInfo)
     {
-        if (collisionInfo.gameObject.name == "Lito")
+        if (collisionInfo.gameObject.tag == "Player")
         {
             collisionInfo.transform.SetParent(null);
         }
-    }
+    }*/
 }

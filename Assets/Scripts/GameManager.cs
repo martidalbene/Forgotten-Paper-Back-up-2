@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject pauseMenu; // Referencia al menu de pausa
 
-    /*public Text showTime;
+    public Text showTime;
     private float currentTime = 0;
     public Sprite Barlito;
     public Sprite Avionlito;
@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public Image UIAvionlito;
 
     public Text cantColeccionables;
-    public int recolectados = 0;*/
+    public int recolectados = 0;
 
     void Awake()
     {
@@ -41,18 +41,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
-        //currentTime += Time.deltaTime;
+        currentTime += Time.deltaTime;
 
         if(unlockbarlito.hasBarlito) // Si tengo la transformación del barco, se lo indico al jugador
         {
             player.HasBarlito = true;
-            //UIBarlito.sprite = Barlito;
+            UIBarlito.sprite = Barlito;
         }
 
         if (unlockavionlito.hasAvionlito) // Si tengo la transformación del avión, se lo indico al jugador
         {
             player.HasAvionlito = true;
-            //UIAvionlito.sprite = Avionlito;
+            UIAvionlito.sprite = Avionlito;
         }
 
         if(Input.GetKeyDown(KeyCode.Escape)) 
@@ -69,8 +69,9 @@ public class GameManager : MonoBehaviour
                 pauseMenu.SetActive(true);
             }     
         }
-        //UpdateTimer(currentTime);
-        //UpdatePencilCounter();
+
+        UpdateTimer(currentTime);
+        UpdatePencilCounter();
     }
 
     // Funcion que controla si el jugador decidió seguir jugando estando en el menu de pausa
@@ -87,13 +88,13 @@ public class GameManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
         float minutes = Mathf.FloorToInt(currentTime / 60);
 
-        //showTime.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
+        showTime.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
     }
 
-    /*private void UpdatePencilCounter()
+    private void UpdatePencilCounter()
     {
         cantColeccionables.text = recolectados.ToString();
-    }*/
+    }
 
 
 

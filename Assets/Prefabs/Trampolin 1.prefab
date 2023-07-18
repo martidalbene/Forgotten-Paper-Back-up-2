@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5514807980466444369}
   - component: {fileID: 4826020014847483925}
   - component: {fileID: 489187931157356795}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trampolin 1
   m_TagString: Trampolin
   m_Icon: {fileID: 0}
@@ -141,9 +141,9 @@ GameObject:
   - component: {fileID: 7359992057195875678}
   - component: {fileID: 4934448970441326950}
   - component: {fileID: 2605049560983926433}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Rebotin
-  m_TagString: Untagged
+  m_TagString: Trampolin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

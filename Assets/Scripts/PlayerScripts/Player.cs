@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public bool Dirty = false;
     private float dirtyTimer;
 
-    private bool inGround = true; // Variable para controlar si Lito está en el suelo o en una plataforma, y no en el aire
+    //private bool inGround = true; // Variable para controlar si Lito está en el suelo o en una plataforma, y no en el aire
     public float AvionlitoSpeed; // Velocidad de Lito transformado en avion 
 
     private float JumpForce; // Variable que hace saltar a Lito
@@ -309,7 +309,7 @@ public class Player : MonoBehaviour
         }
         if(collision.gameObject.tag == "floor" || collision.gameObject.tag == "OneWayPlatform")
         {
-            inGround = true;
+            //inGround = true;
             jumpOutOfTheWater = false;
         }
         if(collision.gameObject.tag == "ant" || collision.gameObject.tag == "fly" || 
