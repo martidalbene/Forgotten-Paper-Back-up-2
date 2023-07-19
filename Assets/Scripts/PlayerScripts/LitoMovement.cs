@@ -68,7 +68,7 @@ public class LitoMovement : MonoBehaviour
     public void OutOfTheWater()
     {
         jumpOutOfTheWater = true;
-        rb.AddForce(Vector2.up * JumpForce * 2f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * JumpForce * 1.8f, ForceMode2D.Impulse);
     }
 
     void flip()
@@ -139,7 +139,7 @@ public class LitoMovement : MonoBehaviour
         {
             speed = litoSpeed;
             JumpForce = litoJump;
-            rb.gravityScale = 1.8f;
+            rb.gravityScale = 1.6f;
         }
 
         // Si Lito es un barco, verifico si está en el agua o no, y le asigno su velocidad y gravedad
@@ -171,7 +171,7 @@ public class LitoMovement : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collisionInfo)
+    /*void OnCollisionEnter2D(Collision2D collisionInfo)
     {
         if (collisionInfo.gameObject.tag == "floor")
         {
@@ -187,15 +187,15 @@ public class LitoMovement : MonoBehaviour
             coyoteTimeCounter = coyoteTime;
             startCountDownCoyote = false;
         }
-    }
+    }*/
 
-    void OnCollisionExit2D(Collision2D collisionInfo)
+    /*void OnCollisionExit2D(Collision2D collisionInfo)
     {
         if ((collisionInfo.gameObject.tag == "floor" || collisionInfo.gameObject.tag == "OneWayPlatform"))
         {
             startCountDownCoyote = true;
         }
-    }
+    }*/
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -214,6 +214,28 @@ public class LitoMovement : MonoBehaviour
         {
             pj.Dirty = false;
             pj.animLito.animator.SetBool("DirtyWater", false);
+        }
+        if ((other.gameObject.tag == "floor" || other.gameObject.tag == "OneWayPlatform"))
+        {
+            startCountDownCoyote = true;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "floor")
+        {
+            canJump = true;
+            rb.velocity = new Vector2(movX * litoSpeed, 0);
+            coyoteTimeCounter = coyoteTime;
+            startCountDownCoyote = false;
+        }
+        if (other.gameObject.tag == "OneWayPlatform")
+        {
+            canJump = true;
+            rb.velocity = new Vector2(movX * litoSpeed, rb.velocity.y);
+            coyoteTimeCounter = coyoteTime;
+            startCountDownCoyote = false;
         }
     }
 }

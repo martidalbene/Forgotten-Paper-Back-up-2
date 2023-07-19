@@ -33,7 +33,6 @@ public class TransformationsController : MonoBehaviour
             pjMovement.StatChange();
             animLito.TransformingLito();
             AudioManager.Instance.Play("transform");
-            Debug.Log("Ser Lito");
         }
 
         if (Input.GetButtonDown("Transform Lito") && pj.water && !pj.GrandpaIsTalking && !pjMovement.jumpOutOfTheWater)
