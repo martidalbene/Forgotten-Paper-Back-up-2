@@ -171,23 +171,13 @@ public class LitoMovement : MonoBehaviour
         }
     }
 
-    /*void OnCollisionEnter2D(Collision2D collisionInfo)
+    void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-        if (collisionInfo.gameObject.tag == "floor")
+        if (collisionInfo.gameObject.tag == "floor" || collisionInfo.gameObject.tag == "OneWayPlatform")
         {
             canJump = true;
-            rb.velocity = new Vector2(movX * litoSpeed, 0);
-            coyoteTimeCounter = coyoteTime;
-            startCountDownCoyote = false;
         }
-        if (collisionInfo.gameObject.tag == "OneWayPlatform")
-        {
-            canJump = true;
-            rb.velocity = new Vector2(movX * litoSpeed, rb.velocity.y);
-            coyoteTimeCounter = coyoteTime;
-            startCountDownCoyote = false;
-        }
-    }*/
+    }
 
     /*void OnCollisionExit2D(Collision2D collisionInfo)
     {
@@ -225,14 +215,12 @@ public class LitoMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "floor")
         {
-            canJump = true;
             rb.velocity = new Vector2(movX * litoSpeed, 0);
             coyoteTimeCounter = coyoteTime;
             startCountDownCoyote = false;
         }
         if (other.gameObject.tag == "OneWayPlatform")
         {
-            canJump = true;
             rb.velocity = new Vector2(movX * litoSpeed, rb.velocity.y);
             coyoteTimeCounter = coyoteTime;
             startCountDownCoyote = false;
