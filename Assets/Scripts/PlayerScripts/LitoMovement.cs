@@ -27,7 +27,7 @@ public class LitoMovement : MonoBehaviour
     private float coyoteTime = .13f;
     private float coyoteTimeCounter; 
 
-    private float jumpBufferTime = .15f;
+    private float jumpBufferTime = .3f;
     private float jumpBufferCounter;
     private bool startCountDownCoyote = false;
 
