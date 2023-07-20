@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GoodEnd.unity
     guid: b29f937cca22159469f95b35e3ab7ab8
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/WinScene.unity
     guid: fadcc3864ef24aa40a46a8b7d5d01458
   - enabled: 0
