@@ -33,12 +33,14 @@ public class TransformationsController : MonoBehaviour
             pjMovement.StatChange();
             animLito.TransformingLito();
             AudioManager.Instance.Play("transform");
+            AudioManager.Instance.Stop("wind");
         }
 
         if (Input.GetButtonDown("Transform Lito") && pj.water && !pj.GrandpaIsTalking && !pjMovement.jumpOutOfTheWater)
         {
             pjMovement.OutOfTheWater();
             AudioManager.Instance.Play("transform");
+            AudioManager.Instance.Stop("wind");
         }
 
         if(Input.GetButtonDown("Transform Bar") && pj.HasBarlito == true && !pj.IsBarlito && !pj.GrandpaIsTalking) //&& inGround
@@ -52,6 +54,7 @@ public class TransformationsController : MonoBehaviour
             pjMovement.StatChange();
             animLito.TransformingLito();
             AudioManager.Instance.Play("transform");
+            AudioManager.Instance.Stop("wind");
         }
 
         if(Input.GetButtonDown("Transform Avio") && pj.HasAvionlito == true && !pj.IsAvionlito && !pj.GrandpaIsTalking)
