@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BarlitoEncounter : MonoBehaviour
+public class NPCEncounter : MonoBehaviour
 {
     public GameObject dialoguePanel; // El fondo donde se muestra el texto
     public Text dialogueText; // El espacio de texto donde se muestra el díalogo
@@ -15,7 +15,7 @@ public class BarlitoEncounter : MonoBehaviour
 
     private bool nextDialogue = false; // Variable que controla si ya se terminó de escribir la línea de díalogo para pasar a la siguiente
     private bool firstTimeWeMeet = true; // Para saber si es la primera vez que el jugador ingresa al área para interactuar
-    public Player pj;
+    public Lito pj;
     public GameObject NextDialogLetter;
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class BarlitoEncounter : MonoBehaviour
             firstTimeWeMeet = false; // Modifico la variable para saber que ya pasó esa primera vez
         }
         // Si lito está en el área de interacción, pero no es la primera vez, es necesario precionar Enter para comenzar la interacción
-        else if(litoIsClose && Input.GetKeyDown(KeyCode.Return) && nextDialogue)
+        else if(litoIsClose && Input.GetKeyDown(KeyCode.Return) && !nextDialogue)
         {
             if(dialoguePanel.activeInHierarchy) {
                 pj.GrandpaIsTalking = false;
@@ -55,6 +55,8 @@ public class BarlitoEncounter : MonoBehaviour
             NextDialogLetter.SetActive(true);
             nextDialogue = true; // Si ya se escribió toda la línea de texto, activo la variable que me permita pasar a la siguiente linea
         }
+
+        Debug.Log(dialogueText.text);
     }
 
     // Dejo el texto vacío, el índice en 0 y desactivo el panel donde se muestra
@@ -64,7 +66,7 @@ public class BarlitoEncounter : MonoBehaviour
         index = 0;
         dialoguePanel.SetActive(false);
         pj.GrandpaIsTalking = false;
-        nextDialogue = true;
+        nextDialogue = false;
     }
 
     // Corrutina para mostrar la línea de diálogo actual

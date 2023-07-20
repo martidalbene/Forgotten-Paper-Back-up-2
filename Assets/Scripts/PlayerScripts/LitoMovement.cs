@@ -163,7 +163,6 @@ public class LitoMovement : MonoBehaviour
         if (speed < BarlitoWaterMaxSpeed && pj.water)
         {
             speed += BarlitoWaterAcceleration * Time.deltaTime;
-            Debug.Log("Speed");
         }
         else if(!pj.water && pj.IsBarlito)
         {

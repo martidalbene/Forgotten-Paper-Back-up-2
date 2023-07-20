@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     public Text deathsCounter;
 
+    public GameObject spawnMarinerito;
+
     void Awake()
     {
         if (Instance == null)
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
         {
             player.HasBarlito = true;
             UIBarlito.sprite = Barlito;
+            spawnMarinerito.SetActive(true);
         }
 
         if (unlockavionlito.hasAvionlito) // Si tengo la transformación del avión, se lo indico al jugador
