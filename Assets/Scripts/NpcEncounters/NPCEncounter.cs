@@ -55,8 +55,6 @@ public class NPCEncounter : MonoBehaviour
             NextDialogLetter.SetActive(true);
             nextDialogue = true; // Si ya se escribió toda la línea de texto, activo la variable que me permita pasar a la siguiente linea
         }
-
-        Debug.Log(dialogueText.text);
     }
 
     // Dejo el texto vacío, el índice en 0 y desactivo el panel donde se muestra

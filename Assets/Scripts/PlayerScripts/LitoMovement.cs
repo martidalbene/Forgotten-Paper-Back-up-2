@@ -68,7 +68,7 @@ public class LitoMovement : MonoBehaviour
     public void OutOfTheWater()
     {
         jumpOutOfTheWater = true;
-        rb.AddForce(Vector2.up * JumpForce * 1.8f, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * JumpForce * 2f, ForceMode2D.Impulse);
     }
 
     void flip()
