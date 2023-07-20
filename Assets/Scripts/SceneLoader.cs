@@ -14,7 +14,6 @@ public class SceneLoader : MonoBehaviour
     void Awake()
     {
         if(Instance == null) Instance = this;
-        else Debug.Log("Mas de un manager");
     }
 
     // Cargo la siguiente escena
@@ -44,6 +43,16 @@ public class SceneLoader : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         SceneManager.LoadScene(levelIndex);
+    }
+
+    public void goToGoodEnding()
+    {
+        StartCoroutine(LoadLevel(3));
+    }
+
+    public void goToBadEnding()
+    {
+        StartCoroutine(LoadLevel(4));
     }
 
 }

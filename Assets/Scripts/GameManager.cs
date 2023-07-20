@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject spawnMarinerito;
 
+    private int gamePlayTime;
+
     void Awake()
     {
         if (Instance == null)
@@ -96,6 +98,8 @@ public class GameManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
         float minutes = Mathf.FloorToInt(currentTime / 60);
 
+        gamePlayTime = (int)minutes;
+
         showTime.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
     }
 
@@ -109,9 +113,25 @@ public class GameManager : MonoBehaviour
         deathsCounter.text = "Deaths: " + litoDeathsCounter.ToString();
     }
 
-    private void FinishPointsCalculator()
+    private bool FinishPointsCalculator()
     {
-        
+        bool canBeGood = false;
+
+        if(litoDeathsCounter < 10 && gamePlayTime < 15) canBeGood = true;
+
+        return canBeGood;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            if(FinishPointsCalculator())
+            {
+                SceneLoader.Instance.goToGoodEnding();
+            }
+            else SceneLoader.Instance.goToBadEnding();
+        }
     }
 
 }
