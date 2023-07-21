@@ -581,7 +581,7 @@ MonoBehaviour:
   - Muchos papeles acabaron en el suelo, pero uno en particular volo por la ventana
     y acabo en el patio.
   - Ahora papelito debera encontrar el camino de vuelta a su hogar.
-  wordSpeed: 0.1
+  wordSpeed: 0.08
 --- !u!1001 &1751688952
 PrefabInstance:
   m_ObjectHideFlags: 0

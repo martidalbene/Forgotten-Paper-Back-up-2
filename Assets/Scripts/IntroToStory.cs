@@ -12,7 +12,7 @@ public class IntroToStory : MonoBehaviour
     public float wordSpeed; // Tiempo en el que se va a mostrar el texto
     private bool nextDialogue = false; // Variable que controla si ya se terminó de escribir la línea de díalogo para pasar a la siguiente
 
-    private float timeToWait = 15f;
+    private float timeToWait = 10f;
 
     private float timer = 0;
 
