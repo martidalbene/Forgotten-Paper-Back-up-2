@@ -47,12 +47,17 @@ public class SceneLoader : MonoBehaviour
 
     public void goToGoodEnding()
     {
-        StartCoroutine(LoadLevel(3));
+        StartCoroutine(LoadLevel(2));
     }
 
     public void goToBadEnding()
     {
-        StartCoroutine(LoadLevel(4));
+        StartCoroutine(LoadLevel(3));
+    }
+
+    public int currentScene()
+    {
+        return SceneManager.GetActiveScene().buildIndex;
     }
 
 }

@@ -30,11 +30,20 @@ public class GameManager : MonoBehaviour
 
     private int gamePlayTime;
 
+    private bool firstTimeTouchingBoatTransformation = true;
+    private bool firstTimeTouchingPlaneTransformation = true;
+
+    public bool stillPlaying = true;
+
+    private bool enteringNewScene = true;
+
     void Awake()
     {
         if (Instance == null)
             Instance = this;
         else Destroy(this);
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Busco los objetos que necesito
@@ -48,40 +57,62 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        currentTime += Time.deltaTime;
-
-        if(unlockbarlito.hasBarlito) // Si tengo la transformación del barco, se lo indico al jugador
+        if(stillPlaying)
         {
-            player.HasBarlito = true;
-            UIBarlito.sprite = Barlito;
-            spawnMarinerito.SetActive(true);
-        }
+            currentTime += Time.deltaTime;
 
-        if (unlockavionlito.hasAvionlito) // Si tengo la transformación del avión, se lo indico al jugador
-        {
-            player.HasAvionlito = true;
-            UIAvionlito.sprite = Avionlito;
-        }
-
-        if(Input.GetKeyDown(KeyCode.Escape)) 
-        {
-            // Si se presiona Escape, y el menú de pausa está activo, llamo a la funcion Continue()
-            if(pauseMenu.activeInHierarchy)
+            if(unlockbarlito.hasBarlito) // Si tengo la transformación del barco, se lo indico al jugador
             {
-                Continue();
+                player.HasBarlito = true;
+                UIBarlito.sprite = Barlito;
+                spawnMarinerito.SetActive(true);
+                if(firstTimeTouchingBoatTransformation) 
+                {
+                    AudioManager.Instance.Play("newTransformation");
+                    firstTimeTouchingBoatTransformation = false;
+                }
             }
-            // Si no está activo, lo activo y paro el juego
-            else
+
+            if (unlockavionlito.hasAvionlito) // Si tengo la transformación del avión, se lo indico al jugador
             {
-                Time.timeScale = 0f;
-                pauseMenu.SetActive(true);
-            }     
+                player.HasAvionlito = true;
+                UIAvionlito.sprite = Avionlito;
+                if(firstTimeTouchingPlaneTransformation)
+                {
+                    AudioManager.Instance.Play("newTransformation");
+                    firstTimeTouchingPlaneTransformation = false;
+                } 
+            }
+
+            if(Input.GetKeyDown(KeyCode.Escape)) 
+            {
+                // Si se presiona Escape, y el menú de pausa está activo, llamo a la funcion Continue()
+                if(pauseMenu.activeInHierarchy)
+                {
+                    Continue();
+                }
+                // Si no está activo, lo activo y paro el juego
+                else
+                {
+                    Time.timeScale = 0f;
+                    pauseMenu.SetActive(true);
+                }     
+            }
+
+        }
+        else
+        {
+            if(enteringNewScene && (SceneLoader.Instance.currentScene() == 2 || SceneLoader.Instance.currentScene() == 3))
+            {
+                GetNewTexts();
+                enteringNewScene = false;
+            }
         }
 
         UpdateTimer(currentTime);
         UpdatePencilCounter();
         UpdateDeathsCounter();
+        
     }
 
     // Funcion que controla si el jugador decidió seguir jugando estando en el menu de pausa
@@ -110,7 +141,8 @@ public class GameManager : MonoBehaviour
 
     private void UpdateDeathsCounter()
     {
-        deathsCounter.text = "Deaths: " + litoDeathsCounter.ToString();
+        if(stillPlaying) deathsCounter.text = "Deaths: " + litoDeathsCounter.ToString();
+        else deathsCounter.text = litoDeathsCounter.ToString();
     }
 
     private bool FinishPointsCalculator()
@@ -129,9 +161,23 @@ public class GameManager : MonoBehaviour
             if(FinishPointsCalculator())
             {
                 SceneLoader.Instance.goToGoodEnding();
+                stillPlaying = false;
             }
-            else SceneLoader.Instance.goToBadEnding();
+            else 
+            {
+                SceneLoader.Instance.goToBadEnding();
+                stillPlaying = false;
+            }
+            
+            
         }
+    }
+
+    private void GetNewTexts()
+    {
+        deathsCounter = GameObject.Find("Deaths").GetComponent<Text>();
+        cantColeccionables = GameObject.Find("Pencils").GetComponent<Text>();
+        showTime = GameObject.Find("Time").GetComponent<Text>();
     }
 
 }
