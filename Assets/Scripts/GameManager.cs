@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+
         if (Instance == null)
             Instance = this;
         else Destroy(this);
@@ -178,6 +179,11 @@ public class GameManager : MonoBehaviour
         deathsCounter = GameObject.Find("Deaths").GetComponent<Text>();
         cantColeccionables = GameObject.Find("Pencils").GetComponent<Text>();
         showTime = GameObject.Find("Time").GetComponent<Text>();
+    }
+
+    public void Reset()
+    {
+        Destroy(gameObject);
     }
 
 }
