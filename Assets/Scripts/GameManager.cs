@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if(enteringNewScene && (SceneLoader.Instance.currentScene() == 2 || SceneLoader.Instance.currentScene() == 3))
+            if(enteringNewScene && (SceneLoader.Instance.currentScene() == 3 || SceneLoader.Instance.currentScene() == 4))
             {
                 GetNewTexts();
                 enteringNewScene = false;

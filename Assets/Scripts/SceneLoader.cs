@@ -42,19 +42,17 @@ public class SceneLoader : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        if(levelIndex == 1) GameManager.Instance.Reset();
-
         SceneManager.LoadScene(levelIndex);
     }
 
     public void goToGoodEnding()
     {
-        StartCoroutine(LoadLevel(2));
+        StartCoroutine(LoadLevel(3));
     }
 
     public void goToBadEnding()
     {
-        StartCoroutine(LoadLevel(3));
+        StartCoroutine(LoadLevel(4));
     }
 
     public int currentScene()
