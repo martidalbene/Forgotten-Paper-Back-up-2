@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
             if(unlockbarlito.hasBarlito) // Si tengo la transformación del barco, se lo indico al jugador
             {
-                player.HasBarlito = true;
+                //player.HasBarlito = true;
                 UIBarlito.sprite = Barlito;
                 spawnMarinerito.SetActive(true);
                 if(firstTimeTouchingBoatTransformation) 
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
             if (unlockavionlito.hasAvionlito) // Si tengo la transformación del avión, se lo indico al jugador
             {
-                player.HasAvionlito = true;
+                //player.HasAvionlito = true;
                 UIAvionlito.sprite = Avionlito;
                 if(firstTimeTouchingPlaneTransformation)
                 {

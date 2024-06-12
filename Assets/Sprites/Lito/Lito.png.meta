@@ -237,7 +237,7 @@ TextureImporter:
       213: -7418134956614582304
     second: Lito_38
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -258,6 +258,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -296,6 +297,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -311,6 +313,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1153,6 +1167,46 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Lito_0: -3389316095458873594
+      Lito_1: 7146769400783889267
+      Lito_10: 8876538323176408826
+      Lito_11: -4047543061568427184
+      Lito_12: -3067808827502971615
+      Lito_13: 8089185852592076403
+      Lito_14: -415524931477688876
+      Lito_15: -3962615117524554412
+      Lito_16: 8726281828660077191
+      Lito_17: -3313820457021795018
+      Lito_18: 4670478464670523714
+      Lito_19: -993240733638738565
+      Lito_2: -6470559738738873497
+      Lito_20: 5134949697093198524
+      Lito_21: -1695662654983998521
+      Lito_22: -8525906651782747192
+      Lito_23: 6026882342859256543
+      Lito_24: -7501625996157349775
+      Lito_25: -4766433809543936679
+      Lito_26: 7174193496282057846
+      Lito_27: 6190629821891641023
+      Lito_28: -1407299591007506098
+      Lito_29: 6187802160114085992
+      Lito_3: 2581341866220144466
+      Lito_30: 7401667993656987270
+      Lito_31: 1077114208516222834
+      Lito_32: 3077132001478300273
+      Lito_33: 2788296834546839560
+      Lito_34: 7435987781942386225
+      Lito_35: 9111813357914165992
+      Lito_36: 6910687929258985558
+      Lito_37: -1257544491794417863
+      Lito_38: -7418134956614582304
+      Lito_4: 1137345592446797552
+      Lito_5: 3671735673448789858
+      Lito_6: 4862300601652871364
+      Lito_7: 421710994961907384
+      Lito_8: 8267915663884382507
+      Lito_9: -7647223279724865402
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
