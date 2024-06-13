@@ -80,3 +80,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transformationData: {fileID: 11400000, guid: 63582dd58317eaa489634deaad2c7efd, type: 2}
+  _hAxis: 0
+  _isOnFloor: 0
+  _isLookingRight: 0
+  _isOnWater: 0
+  _timeBeforeStart: 0.5

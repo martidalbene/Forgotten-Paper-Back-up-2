@@ -45,3 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _transformationData: {fileID: 11400000, guid: be873cf1df590da41aab36479ddae8ca, type: 2}
+  _hAxis: 1
+  _isOnFloor: 0
+  _isLookingRight: 0
+  _isOnWater: 0
+  _timeBeforeStart: 0.35

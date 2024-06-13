@@ -1,18 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEvents : MonoBehaviour
+public static class PlayerEvents
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private static LitoTransformationType _currentPlayerTransformation;
 
-    // Update is called once per frame
-    void Update()
+    public static Action<ItemType> OnItemGrab;
+    public static Action OnWaterTouch;
+
+    public static LitoTransformationType PlayerCurrentTransformation => _currentPlayerTransformation;
+
+    public static void UpdatePlayerTransformation(LitoTransformationType newTransform)
     {
-        
+        _currentPlayerTransformation = newTransform;
     }
 }

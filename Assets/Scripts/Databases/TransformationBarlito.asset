@@ -17,7 +17,10 @@ MonoBehaviour:
   _maxAcceleration: 15
   _jumpForce: 4
   _gravityScale: 2.5
+  _canStandOnWater: 1
+  _onWaterAcceleration: 5
   _transformAudioClip: {fileID: 8300000, guid: 98d5dc1fb5ed88a4aa52a44da895c22a, type: 3}
-  _footstepsAudioClips: []
-  _lockedIcon: {fileID: 21300000, guid: 47b6baa9828d1864ca2c98ed9bb81e06, type: 3}
-  _unlockedIcon: {fileID: 21300000, guid: d8c659bf6ae1be947b583ea41067584c, type: 3}
+  _jumpAudioClip: {fileID: 8300000, guid: 54ed2c6a6149fe342b53871826dccd9e, type: 3}
+  _footstepsAudioClips:
+  - {fileID: 8300000, guid: 3eb46552b52dbd8418fa38d2096a1ed1, type: 3}
+  _icon: {fileID: 6077751805537155827, guid: 4dc46cf6fad1d9c408f2ccaf3de56970, type: 3}

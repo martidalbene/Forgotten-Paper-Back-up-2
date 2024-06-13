@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     private UnlockBarlito unlockbarlito; // Controlo si tengo la tranformación de Barco
     private UnlockAvionlito unlockavionlito; // Controlo si tengo la transformación de Avion
-    private Lito player; // Referencia al jugador
+    //private Lito player; // Referencia al jugador
 
     public GameObject pauseMenu; // Referencia al menu de pausa
 
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         unlockbarlito = FindObjectOfType<UnlockBarlito>();
-        player = FindObjectOfType<Lito>();
+        //player = FindObjectOfType<Lito>();
         unlockavionlito = FindObjectOfType<UnlockAvionlito>();
     }
 
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
         {
             currentTime += Time.deltaTime;
 
+            /*
             if(unlockbarlito.hasBarlito) // Si tengo la transformación del barco, se lo indico al jugador
             {
                 //player.HasBarlito = true;
@@ -84,6 +85,7 @@ public class GameManager : MonoBehaviour
                     firstTimeTouchingPlaneTransformation = false;
                 } 
             }
+            */
 
             if(Input.GetKeyDown(KeyCode.Escape)) 
             {

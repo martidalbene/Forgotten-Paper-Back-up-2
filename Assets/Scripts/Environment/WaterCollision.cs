@@ -4,20 +4,14 @@ using UnityEngine;
 
 public class WaterCollision : MonoBehaviour
 {
-    private Lito lito;
-    private LitoMovement litoMovement;
-
-    private void Start()
-    {
-        lito = FindObjectOfType<Lito>();
-        litoMovement = FindObjectOfType<LitoMovement>();
-    }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && !lito.IsBarlito)
-        {
-            lito.BackToSpawnPoint();
-        }
+        if (!collision.CompareTag("Player")) return;
+
+        if (PlayerEvents.PlayerCurrentTransformation != LitoTransformationType.Barlito)
+            PlayerEvents.OnWaterTouch?.Invoke();
+
+        /*
         else if(collision.gameObject.tag == "Player" && lito.IsBarlito)
         {
             lito.water = true;
@@ -27,11 +21,16 @@ public class WaterCollision : MonoBehaviour
         if (gameObject.tag == "DirtyWater" && collision.gameObject.tag == "Player")
         {
             lito.Dirty = true;
-        }
+        }*/
     }
 
+    /*
     void OnTriggerExit2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Player" && lito.IsBarlito) lito.water = false;
-    }
+        if (!other.CompareTag("Player")) return;
+
+        if (PlayerEvents.PlayerCurrentTransformation != LitoTransformationType.Barlito)
+            PlayerEvents.OnWaterTouch?.Invoke();
+
+    }*/
 }

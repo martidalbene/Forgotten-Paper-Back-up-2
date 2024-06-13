@@ -25,17 +25,17 @@ public class LitoMovement : MonoBehaviour
 
     
     private float coyoteTime = .13f;
-    private float coyoteTimeCounter; 
+    private float coyoteTimeCounter;
 
-    private float jumpBufferTime = .3f;
-    private float jumpBufferCounter;
+    public float jumpBufferTime = .3f;
+    public float jumpBufferCounter;
     private bool startCountDownCoyote = false;
 
-    private float speed; // Velocidad actual de Lito
+    public float speed; // Velocidad actual de Lito
     public float BarlitoJump; // Fuerza de Lito al saltar con el barco
     public float BarlitoSpeed; // Velocidad de Lito transformado en Barco estando en el piso
     public float BarlitoWaterMaxSpeed; // Velocidad de Lito transformado en Barco estando en el agua
-    private float BarlitoWaterAcceleration = 5f; // Velocidad máxima que puede alcanzar el barco en el agua
+    public float BarlitoWaterAcceleration = 5f; // Velocidad máxima que puede alcanzar el barco en el agua
     public float AvionlitoSpeed; // Velocidad de Lito transformado en avion
 
 
@@ -125,7 +125,6 @@ public class LitoMovement : MonoBehaviour
     void CharacterMovement()
     {
         rb.velocity = new Vector2(movX * speed, rb.velocity.y);
-
         if (pj.IsAvionlito) // Si el personaje es Avionlito, su velocidad cambia
         {
             rb.velocity = new Vector2(lookingAt * AvionlitoSpeed, -1f); //velocidad constante cuando te toca el avion

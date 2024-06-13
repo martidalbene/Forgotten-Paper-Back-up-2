@@ -17,14 +17,16 @@ public class DatabaseLitoTransformations : ScriptableObject
     [SerializeField] private float _maxAcceleration;
     [SerializeField] private float _jumpForce;
     [SerializeField] private float _gravityScale;
+    [SerializeField] private bool _canStandOnWater = false;
+    [SerializeField] private float _onWaterAcceleration;
 
     [Header("Sound settings")]
     [SerializeField] private AudioClip _transformAudioClip;
+    [SerializeField] private AudioClip _jumpAudioClip;
     [SerializeField] private List<AudioClip> _footstepsAudioClips;
 
     [Header("UI settings")]
-    [SerializeField] private Sprite _lockedIcon;
-    [SerializeField] private Sprite _unlockedIcon;
+    [SerializeField] private Sprite _icon;
 
     public LitoTransformationType TransformationType => _type;
 
@@ -32,11 +34,13 @@ public class DatabaseLitoTransformations : ScriptableObject
     public float TransformationMaxAcceleration => _maxAcceleration;
     public float TransformationJumpForce => _jumpForce;
     public float TransformationGravityScale => _gravityScale;
+    public bool TransformationCanStandOnWater => _canStandOnWater;
+    public float TransformationOnWaterAcceleration => _onWaterAcceleration;
 
     public AudioClip TransformationAudio => _transformAudioClip;
-    public AudioClip TransformationFootstepSound => _footstepsAudioClips[Random.Range(0, _footstepsAudioClips.Count)];
+    public AudioClip TransformationJumpAudio => _jumpAudioClip;
+    public AudioClip TransformationFootstepSound => _footstepsAudioClips[Random.Range(0, _footstepsAudioClips.Count - 1)];
 
-    public Sprite TransformationLockedIcon => _lockedIcon;
-    public Sprite TransformationUnlockedIcon => _unlockedIcon;
+    public Sprite TransformationIcon => _icon;
 
 }
