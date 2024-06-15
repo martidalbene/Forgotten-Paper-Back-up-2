@@ -9,4 +9,6 @@ public static class UIEvents
     public static Action<LitoTransformationType, Sprite, bool> OnTransformationAdd;
     public static Action<LitoTransformationType> OnTransformationObtained;
     public static Action<LitoTransformationType> OnTransformationSwap;
+    public static Action<string> OnPencilCountUpdate;
+    public static Action<string> OnPlayTimeUpdate;
 }

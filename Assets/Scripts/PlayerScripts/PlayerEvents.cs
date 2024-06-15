@@ -9,6 +9,7 @@ public static class PlayerEvents
 
     public static Action<ItemType> OnItemGrab;
     public static Action OnWaterTouch;
+    public static Action<bool> OnForceOutOfWater;
 
     public static LitoTransformationType PlayerCurrentTransformation => _currentPlayerTransformation;
 

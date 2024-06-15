@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class UIManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private HorizontalLayoutGroup _transformationsPanel;
     [SerializeField] private GameObject _transformationSelector;
+    [SerializeField] private TextMeshProUGUI _pencilCounter;
+    [SerializeField] private TextMeshProUGUI _theTime;
 
     [Header("Objects")]
     [SerializeField] private GameObject _transformationItemObject;
@@ -41,6 +44,8 @@ public class UIManager : MonoBehaviour
         UIEvents.OnTransformationAdd += OnTransformationAdd;
         UIEvents.OnTransformationObtained += OnTransformationAvailable;
         UIEvents.OnTransformationSwap += OnTransformationSwap;
+        UIEvents.OnPencilCountUpdate += OnPencilCounterUpdate;
+        UIEvents.OnPlayTimeUpdate += OnPlaytimeUpdate;
     }
 
     void UnsubscribeFromEvents()
@@ -49,6 +54,8 @@ public class UIManager : MonoBehaviour
         UIEvents.OnTransformationAdd -= OnTransformationAdd;
         UIEvents.OnTransformationObtained -= OnTransformationAvailable;
         UIEvents.OnTransformationSwap -= OnTransformationSwap;
+        UIEvents.OnPencilCountUpdate -= OnPencilCounterUpdate;
+        UIEvents.OnPlayTimeUpdate -= OnPlaytimeUpdate;
     }
 
     private void OnUISound(AudioClip clip)
@@ -86,6 +93,16 @@ public class UIManager : MonoBehaviour
         _uiSounds.PlayOneShot(_transformationSwapAudioClip);
         _transformationsList.TryGetValue(selectedTransformation, out Image transfImage);
         _transformationSelector.transform.position = transfImage.gameObject.transform.position;
-        _transformationSelector.transform.localScale = transfImage.gameObject.transform.localScale;
+        _transformationSelector.transform.localScale = transfImage.gameObject.transform.parent.localScale;
+    }
+
+    private void OnPencilCounterUpdate(string newText)
+    {
+        _pencilCounter.text = newText;
+    }
+
+    private void OnPlaytimeUpdate(string newText)
+    {
+        _theTime.text = newText;
     }
 }

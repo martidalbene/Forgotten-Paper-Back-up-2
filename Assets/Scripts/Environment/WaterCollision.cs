@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WaterCollision : MonoBehaviour
 {
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;
 
@@ -23,14 +23,4 @@ public class WaterCollision : MonoBehaviour
             lito.Dirty = true;
         }*/
     }
-
-    /*
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if (!other.CompareTag("Player")) return;
-
-        if (PlayerEvents.PlayerCurrentTransformation != LitoTransformationType.Barlito)
-            PlayerEvents.OnWaterTouch?.Invoke();
-
-    }*/
 }

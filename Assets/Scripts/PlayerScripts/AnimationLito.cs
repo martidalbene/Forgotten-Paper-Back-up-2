@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimationLito : MonoBehaviour
 {
+    /*
     public Lito pj; // Referencia del jugador
     public LitoMovement pjMovement;
     public Animator animator; // Referencia del animator
@@ -100,4 +101,5 @@ public class AnimationLito : MonoBehaviour
                 break;
         }
     }
+    */
 }

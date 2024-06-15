@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,36 +7,30 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    private UnlockBarlito unlockbarlito; // Controlo si tengo la tranformación de Barco
-    private UnlockAvionlito unlockavionlito; // Controlo si tengo la transformación de Avion
-    //private Lito player; // Referencia al jugador
-
     public GameObject pauseMenu; // Referencia al menu de pausa
-
     public Text showTime;
-    private float currentTime = 0;
-    public Sprite Barlito;
-    public Sprite Avionlito;
-    public Image UIBarlito;
-    public Image UIAvionlito;
-
-    public Text cantColeccionables;
-    public int recolectados = 0;
-
     public int litoDeathsCounter = 0;
-
     public Text deathsCounter;
-
-    public GameObject spawnMarinerito;
-
-    private int gamePlayTime;
+    public GameObject spawnMarinerito;    
 
     private bool firstTimeTouchingBoatTransformation = true;
     private bool firstTimeTouchingPlaneTransformation = true;
 
     public bool stillPlaying = true;
-
     private bool enteringNewScene = true;
+
+    // new
+    [Header("Pencils")]
+    [SerializeField] private List<ItemPencil> _allPencilsInWorld = new List<ItemPencil>();
+
+    // Values
+    private float _currentTime = 0;
+    private int _playTime;
+    private int _colectedPencils = 0;
+
+    // Events
+    public Action OnPencilGrab;
+
 
     void Awake()
     {
@@ -50,9 +45,12 @@ public class GameManager : MonoBehaviour
     // Busco los objetos que necesito
     void Start()
     {
-        unlockbarlito = FindObjectOfType<UnlockBarlito>();
-        //player = FindObjectOfType<Lito>();
-        unlockavionlito = FindObjectOfType<UnlockAvionlito>();
+        OnPencilGrab += PlayerPencilGrab;
+    }
+
+    private void OnDestroy()
+    {
+        OnPencilGrab -= PlayerPencilGrab;
     }
 
     // Update is called once per frame
@@ -60,32 +58,7 @@ public class GameManager : MonoBehaviour
     {
         if(stillPlaying)
         {
-            currentTime += Time.deltaTime;
-
-            /*
-            if(unlockbarlito.hasBarlito) // Si tengo la transformación del barco, se lo indico al jugador
-            {
-                //player.HasBarlito = true;
-                UIBarlito.sprite = Barlito;
-                spawnMarinerito.SetActive(true);
-                if(firstTimeTouchingBoatTransformation) 
-                {
-                    AudioManager.Instance.Play("newTransformation");
-                    firstTimeTouchingBoatTransformation = false;
-                }
-            }
-
-            if (unlockavionlito.hasAvionlito) // Si tengo la transformación del avión, se lo indico al jugador
-            {
-                //player.HasAvionlito = true;
-                UIAvionlito.sprite = Avionlito;
-                if(firstTimeTouchingPlaneTransformation)
-                {
-                    AudioManager.Instance.Play("newTransformation");
-                    firstTimeTouchingPlaneTransformation = false;
-                } 
-            }
-            */
+            _currentTime += Time.deltaTime;
 
             if(Input.GetKeyDown(KeyCode.Escape)) 
             {
@@ -112,8 +85,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        UpdateTimer(currentTime);
-        UpdatePencilCounter();
+        UpdateTimer(_currentTime);
         UpdateDeathsCounter();
         
     }
@@ -132,14 +104,16 @@ public class GameManager : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
         float minutes = Mathf.FloorToInt(currentTime / 60);
 
-        gamePlayTime = (int)minutes;
+        _playTime = (int)minutes;
 
-        showTime.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
-    }
+        string theTime = string.Format("{0:00}:{1:00}", minutes, seconds);
+        string latestTime = "";
 
-    private void UpdatePencilCounter()
-    {
-        cantColeccionables.text = recolectados.ToString();
+        if (latestTime != theTime)
+        {
+            latestTime = theTime;
+            UIEvents.OnPlayTimeUpdate(latestTime);
+        }
     }
 
     private void UpdateDeathsCounter()
@@ -152,7 +126,7 @@ public class GameManager : MonoBehaviour
     {
         bool canBeGood = false;
 
-        if(litoDeathsCounter < 10 && gamePlayTime < 15) canBeGood = true;
+        if(litoDeathsCounter < 10 && _playTime < 15) canBeGood = true;
 
         return canBeGood;
     }
@@ -179,7 +153,6 @@ public class GameManager : MonoBehaviour
     private void GetNewTexts()
     {
         deathsCounter = GameObject.Find("Deaths").GetComponent<Text>();
-        cantColeccionables = GameObject.Find("Pencils").GetComponent<Text>();
         showTime = GameObject.Find("Time").GetComponent<Text>();
     }
 
@@ -188,4 +161,11 @@ public class GameManager : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+    // new
+    private void PlayerPencilGrab()
+    {
+        _colectedPencils += 1;
+        UIEvents.OnPencilCountUpdate($"x{_colectedPencils}");
+    }
 }

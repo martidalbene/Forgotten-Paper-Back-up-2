@@ -17,7 +17,10 @@ public interface ILitoTransformation
     public AudioClip TransformationFootstepSound { get; }
 
     void InitializeTransformation(Rigidbody2D rBody, AudioSource audioSource);
+    void EndTransformation();
     void ExecTransformation(bool isOnWater, bool isFalling, bool isLookingRight);
-    void UpdateTransformation(float delta, float hAxis, bool isOnWater, bool isFalling, bool isLookingRight);
+    void UpdateTransformation(float delta, float hAxis, bool isOnWater, bool isFalling, bool isLookingRight, bool forceOutOfWater);
     void FixedUpdateTransformation();
+
+    void PlayerColliderHit();
 }

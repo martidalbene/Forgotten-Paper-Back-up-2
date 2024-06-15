@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class PlayerTransformationAvionlito : BasePlayerTransformation
 {
+    [SerializeField] private AudioClip _bumpAudio;
     [SerializeField] private float _timeBeforeStart = 1;
     private float _currentTimeBeforeStart = 2f;
+
+    public override void InitializeTransformation(Rigidbody2D rBody, AudioSource audioSource)
+    {
+        base.InitializeTransformation(rBody, audioSource);
+        OnPlayerColliderHit += PlayerColliderHit;
+    }
 
     public override void ExecTransformation(bool isOnWater, bool isOnFloor, bool isLookingRight)
     {
@@ -18,7 +25,12 @@ public class PlayerTransformationAvionlito : BasePlayerTransformation
         else RefRigidBody.AddForce((Vector2.up + Vector2.right) * TransformationJumpForce, ForceMode2D.Impulse);
     }
 
-    public override void UpdateTransformation(float delta, float hAxis, bool isOnWater, bool isOnFloor, bool isLookingRight)
+    public override void EndTransformation()
+    {
+
+    }
+
+    public override void UpdateTransformation(float delta, float hAxis, bool isOnWater, bool isOnFloor, bool isLookingRight, bool forceOutOfWater)
     {
         if (_currentTimeBeforeStart > 0) _currentTimeBeforeStart -= delta;
 
@@ -29,18 +41,18 @@ public class PlayerTransformationAvionlito : BasePlayerTransformation
 
     public override void FixedUpdateTransformation()
     {
-        if (_currentTimeBeforeStart <= 0)
-        {
-            if (_isOnFloor || RefRigidBody.velocity.x == 0)
-            {
-                RefRigidBody.velocity = Vector3.zero;
-                OnForceTransformToBase?.Invoke();
-            }
-            else
-            {
-                if (_isLookingRight) RefRigidBody.velocity = new Vector2(-1 * TransformationSpeed, -1f);
-                else RefRigidBody.velocity = new Vector2(1 * TransformationSpeed, -1f);
-            }
-        }
+        if (_currentTimeBeforeStart > 0) return;
+
+        if (_isLookingRight) RefRigidBody.velocity = new Vector2(-1 * TransformationSpeed, -1f);
+        else RefRigidBody.velocity = new Vector2(1 * TransformationSpeed, -1f);
+
+        if (_isOnFloor) PlayerColliderHit();
+    }
+
+    public override void PlayerColliderHit()
+    {
+        RefAudioSource.PlayOneShot(_bumpAudio);
+        RefRigidBody.velocity = Vector3.zero;
+        OnForceTransformToBase?.Invoke();
     }
 }

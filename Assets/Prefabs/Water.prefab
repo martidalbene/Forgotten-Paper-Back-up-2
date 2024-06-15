@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 770073215520821109}
   - component: {fileID: 770073215520821110}
   - component: {fileID: 770073215520821111}
-  - component: {fileID: -8315836392592855110}
   - component: {fileID: 9142079854897553834}
+  - component: {fileID: 665511205}
   m_Layer: 0
   m_Name: Water
   m_TagString: Water
@@ -27,9 +27,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770073215520821108}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 41.1, y: 1.2808862, z: 32.6}
-  m_LocalScale: {x: 41.094208, y: 3.5006, z: 1}
+  m_LocalScale: {x: 12.964654, y: 11.099731, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,6 +46,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -74,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -240344817294725294, guid: 6eac9bd8e81dc294094c4394831b73e4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8509804}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,34 +104,15 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.9971831, y: 0.43661973}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9971831, y: 0.43661973}
   m_EdgeRadius: 0
---- !u!253 &-8315836392592855110
-BuoyancyEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 770073215520821108}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_SurfaceLevel: 0.42
-  m_Density: 15
-  m_LinearDrag: 40
-  m_AngularDrag: 5
-  m_FlowAngle: 0
-  m_FlowMagnitude: 0
-  m_FlowVariation: 0
 --- !u!114 &9142079854897553834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,3 +125,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb170f033b0523e459bdd9c94d419851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!253 &665511205
+BuoyancyEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770073215520821108}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_SurfaceLevel: 0.2
+  m_Density: 15
+  m_LinearDrag: 40
+  m_AngularDrag: 5
+  m_FlowAngle: 0
+  m_FlowMagnitude: 0
+  m_FlowVariation: 0

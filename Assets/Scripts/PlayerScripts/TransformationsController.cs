@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TransformationsController : MonoBehaviour
 {
+    /*
     public Lito pj;
     public LitoMovement pjMovement;
 
@@ -85,4 +86,5 @@ public class TransformationsController : MonoBehaviour
             AudioManager.Instance.Stop("wind");
         }
     }
+    */
 }

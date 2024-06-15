@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public enum PlayerSound
 {
     Jump
@@ -30,9 +31,10 @@ public class Lito : MonoBehaviour
     private int _currentTransformIndex = 0;
     private bool _canJump = true;
     private bool _isOnFloor = true;
-    public bool _isOnWater = false;
-    public bool _isOnDirtyWater = false;
+    private bool _isOnWater = false;
+    private bool _isOnDirtyWater = false;
     private bool _forceOutOfWater;
+    private float _dirtyTimer;
 
     // Public values
     public bool InputTransformation => Input.GetButtonDown("TransfApply");
@@ -42,19 +44,17 @@ public class Lito : MonoBehaviour
     public bool IsLookingRight => _spriteRenderer.flipX;
     public LitoTransformationType CurrentTransformType => _currentTransformation.TransformationType;
 
-    public bool HasBarlito => _ownedTransformationsList.ContainsKey(LitoTransformationType.Barlito);
-    public bool HasAvionlito => _ownedTransformationsList.ContainsKey(LitoTransformationType.Avionlito);
-
 
     // old
 
+    /*
     public LitoMovement pjMovement;
 
     public AnimationLito animLito;
 
     public bool water = false; // Controlador de si Lito tocó o no el agua
     public bool Dirty = false;
-    private float dirtyTimer;
+    
 
     public bool IsBarlito = false; // Controlo si estoy transformado en Barco
 
@@ -62,6 +62,7 @@ public class Lito : MonoBehaviour
     
 
     public int TransformTo; // Controlo en qué me voy a transformar
+    */
     
     public bool GrandpaIsTalking = false;
 
@@ -101,10 +102,11 @@ public class Lito : MonoBehaviour
     private void Update()
     {
         float delta = Time.deltaTime;
+        DirtyWater(delta);
         if (_currentTransformCooldown > 0) _currentTransformCooldown -= delta;
 
         AnimationManagment();
-        _currentTransformation?.UpdateTransformation(delta, InputHorizontalAxis, _isOnWater, _isOnFloor, IsLookingRight);
+        _currentTransformation?.UpdateTransformation(delta, InputHorizontalAxis, _isOnWater, _isOnFloor, IsLookingRight, _forceOutOfWater);
 
         // Input
         if (InputTransformation)
@@ -120,8 +122,6 @@ public class Lito : MonoBehaviour
         // Sprite flip
         if (InputHorizontalAxis > 0) _spriteRenderer.flipX = false;
         else if (InputHorizontalAxis < 0) _spriteRenderer.flipX = true;
-
-        //dirtyWater();
     }
 
     private void FixedUpdate()
@@ -138,15 +138,17 @@ public class Lito : MonoBehaviour
     {
         PlayerEvents.OnItemGrab += ItemGrab;
         PlayerEvents.OnWaterTouch += OnWaterTouch;
+        PlayerEvents.OnForceOutOfWater += OnForceOutOfWater;
     }
 
     private void UnsubscribeToEvents()
     {
         PlayerEvents.OnItemGrab -= ItemGrab;
         PlayerEvents.OnWaterTouch -= OnWaterTouch;
+        PlayerEvents.OnForceOutOfWater -= OnForceOutOfWater;
 
         foreach (BasePlayerTransformation transformation in _ownedTransformationsList.Values)
-            transformation.OnForceTransformToBase -= Transform;
+            transformation.OnForceTransformToBase -= TransformForceToNormal;
     }
 
     void AnimationManagment()
@@ -191,27 +193,38 @@ public class Lito : MonoBehaviour
         // If coming from a transformation then return to normal
         if (CurrentTransformType != _baseForm.TransformationType)
         {
-            TransformToNormal(_currentTransformation.TransformationCanStandOnWater);
+            TransformToNormal();
             return;
         }
 
+        _currentTransformation.EndTransformation();
         _currentTransformation = _ownedTransformationsList.ElementAt(_currentTransformIndex).Value;
         _currentTransformation?.ExecTransformation(_isOnWater, _isOnFloor, IsLookingRight);
 
         // Get new transform data and apply animation
         _rBody.gravityScale = _currentTransformation.TransformationGravityScale;
-        Jump(false);
-
         _animator.SetBool($"transformation{CurrentTransformType}", true);
     }
 
-    void TransformToNormal(bool canStandOnWater = false)
+    void TransformForceToNormal()
     {
-        _forceOutOfWater = canStandOnWater;
+        if (_currentTransformation.TransformationType == _baseForm.TransformationType) return;
+        _currentTransformCooldown = _transformCooldown;
+        _audioSource.PlayOneShot(_currentTransformation.TransformationSound);
+
+        string previousTransform = $"{CurrentTransformType}";
+        _animator.SetBool($"transformation{previousTransform}", false);
+        TransformToNormal();
+    }
+
+    void TransformToNormal()
+    {
+        _currentTransformation.EndTransformation();
         _rBody.gravityScale = _baseForm.TransformationGravityScale;
         _currentTransformation = _baseForm;
-        Jump(false);
         _animator.SetBool($"transformation{CurrentTransformType}", true);
+
+        OnWaterTouch();
     }
 
     void ChangeTransform(bool isPrevious)
@@ -241,13 +254,15 @@ public class Lito : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("floor") || collision.gameObject.CompareTag("OneWayPlatform"))
             _canJump = true;
+
+        _currentTransformation?.PlayerColliderHit();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("floor"))
         {
-            _rBody.velocity = new Vector2(InputHorizontalAxis * _currentTransformation.TransformationSpeed, 0);
+            _rBody.velocity = new Vector2(InputHorizontalAxis * _currentTransformation.TransformationSpeed, _rBody.velocity.y);
             _isOnFloor = true;
         }
 
@@ -257,6 +272,7 @@ public class Lito : MonoBehaviour
             _isOnFloor = true;
         }
 
+        
         if (other.CompareTag("Water"))
             _isOnWater = true;
 
@@ -265,26 +281,20 @@ public class Lito : MonoBehaviour
             _isOnWater = true;
             _isOnDirtyWater = true;
         }
-
-        if (other.CompareTag("Pencil"))
-        {
-            GameManager.Instance.recolectados++;
-            Destroy(other.gameObject);
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        
         if (collision.CompareTag("floor") || collision.CompareTag("OneWayPlatform"))
             _isOnFloor = false;
 
-        if (collision.CompareTag("Water"))
-            _isOnWater = false;
-
-        if (collision.CompareTag("DirtyWater"))
+        
+        if (collision.CompareTag("Water") || collision.CompareTag("DirtyWater"))
         {
             _isOnWater = false;
             _isOnDirtyWater = false;
+            _forceOutOfWater = false;
         }
     }
 
@@ -315,64 +325,59 @@ public class Lito : MonoBehaviour
 
         _availableTransformationsList.TryGetValue(transformationType, out BasePlayerTransformation transformation);
         _ownedTransformationsList.Add(transformation.TransformationType, transformation);
-        transformation.OnForceTransformToBase += Transform;
+        transformation.OnForceTransformToBase += TransformForceToNormal;
 
         UIEvents.OnTransformationObtained(transformationType);
         if (_ownedTransformationsList.Count == 1) UIEvents.OnTransformationSwap(_ownedTransformationsList.ElementAtOrDefault(_currentTransformIndex).Key);
     }
 
-    // old
-
-    /*
-    private void dirtyWater()
+    private void DirtyWater(float deltaTime)
     {
-        if (Dirty)
+        if (_isOnDirtyWater)
         {
-            dirtyTimer += Time.deltaTime;
-            animLito.animator.SetBool("DirtyWater", true);
+            _dirtyTimer += deltaTime;
+            _animator.SetBool("DirtyWater", true);
         }
         else
         {
-            dirtyTimer = 0;
-            animLito.animator.SetBool("DirtyWater", false);
+            _dirtyTimer = 0;
+            _animator.SetBool("DirtyWater", false);
         }
 
-        if(dirtyTimer >= 5)
+        if(_dirtyTimer >= 5)
         {
             BackToSpawnPoint();
-            dirtyTimer = 0;
+            _dirtyTimer = 0;
         }
-        else if(dirtyTimer < 0)
-        {
-            dirtyTimer = 0;
-        }
-    }*/
+
+        else if(_dirtyTimer < 0)
+            _dirtyTimer = 0;
+    }
 
     private void OnWaterTouch()
     {
         if (!_forceOutOfWater && _isOnWater)
             BackToSpawnPoint();
+    }
 
-        else if (_isOnWater)
-        {
-            if (IsLookingRight) _rBody.AddForce(Vector2.up + -Vector2.right, ForceMode2D.Impulse);
-            else _rBody.AddForce((Vector2.up + Vector2.right) * 10, ForceMode2D.Impulse);
-            _forceOutOfWater = false;
-            _isOnWater = false;
-        }
+    private void OnForceOutOfWater(bool force)
+    {
+        _forceOutOfWater = force;
     }
 
     public void BackToSpawnPoint()
     {
+        TransformForceToNormal();
+
         GameManager.Instance.litoDeathsCounter++;
         transform.position = spawnPoint.transform.position;
-        TransformTo = 0;
+        /*
         water = false;
         IsBarlito = false;
         IsAvionlito = false;
         pjMovement.rb.velocity = new Vector2(0, pjMovement.rb.velocity.y); //reseteo velocidades en X y no en Y
         pjMovement.StatChange();
-        animLito.TransformingLito();
+        animLito.TransformingLito();*/
     }
 
     public void PlayWind()

@@ -13,6 +13,7 @@ public abstract class BasePlayerTransformation : MonoBehaviour, ILitoTransformat
     public bool _isOnFloor;
     public bool _isLookingRight;
     public bool _isOnWater;
+    public bool _forceOutOfWater;
 
     public Rigidbody2D RefRigidBody => _rBody;
     public AudioSource RefAudioSource => _audioSource;
@@ -30,19 +31,30 @@ public abstract class BasePlayerTransformation : MonoBehaviour, ILitoTransformat
     public Sprite TransformationSprite => _transformationData.TransformationIcon;
 
     public Action OnForceTransformToBase;
+    public Action OnPlayerColliderHit;
 
-    public void InitializeTransformation(Rigidbody2D rBody, AudioSource audioSource)
+    private void OnDestroy()
+    {
+        OnPlayerColliderHit -= PlayerColliderHit;
+    }
+
+    public virtual void InitializeTransformation(Rigidbody2D rBody, AudioSource audioSource)
     {
         _rBody = rBody;
         _audioSource = audioSource;
     }
+    public abstract void EndTransformation();
     public virtual void ExecTransformation(bool isOnWater, bool isOnFloor, bool isLookingRight)
     {
         _isOnWater = isOnWater;
         _isOnFloor = isOnFloor;
         _isLookingRight = isLookingRight;
     }
-    public abstract void UpdateTransformation(float delta, float hAxis, bool isOnWater, bool isOnFloor, bool isLookingRight);
+    public abstract void UpdateTransformation(float delta, float hAxis, bool isOnWater, bool isOnFloor, bool isLookingRight, bool forceOutOfWater);
     public abstract void FixedUpdateTransformation();
 
+    public virtual void PlayerColliderHit()
+    {
+
+    }
 }

@@ -5,6 +5,7 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    /*
     private float speed; // Velocidad actual de Lito
     public float LitoSpeed; // Velocidad de Lito tranformado en Lito
     public float BarlitoSpeed; // Velocidad de Lito transformado en Barco estando en el piso
@@ -197,6 +198,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    /*
     // Controlo si el personaje quiere transformarse en lito
     void CharacterChange()
     {
@@ -286,6 +288,7 @@ public class Player : MonoBehaviour
         }
     }*/
 
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //solo cuando el jugador no tiene velocidad en Y puede saltar nuevamente
@@ -415,5 +418,5 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(0, rb.velocity.y); //reseteo velocidades en X y no en Y
         StatChange();
         animLito.TransformingLito();
-    }
+    }*/
 }

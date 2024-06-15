@@ -15,12 +15,22 @@ public class PlayerTransformationLito : BasePlayerTransformation
         _isOnWater = isOnWater;
         _isLookingRight = isLookingRight;
 
-        RefRigidBody.AddForce(Vector2.up * TransformationJumpForce, ForceMode2D.Impulse);
-        print("==?=");
+        RefRigidBody.mass = 1;
+        RefRigidBody.AddForce(Vector2.up * 4, ForceMode2D.Impulse);
     }
 
-    public override void UpdateTransformation(float delta, float hAxis, bool isOnWater, bool isOnFloor, bool isLookingRight)
+    public override void EndTransformation()
     {
+        
+    }
+
+    public override void UpdateTransformation(float delta, float hAxis, bool isOnWater, bool isOnFloor, bool isLookingRight, bool forceOutOfWater)
+    {
+        _forceOutOfWater = forceOutOfWater;
+        _isLookingRight = isLookingRight;
+        _isOnFloor = isOnFloor;
+        _isOnWater = isOnWater;
+
         if (_currentTimeBeforeStart > 0) _currentTimeBeforeStart -= delta;
 
         _hAxis = hAxis;
@@ -28,7 +38,11 @@ public class PlayerTransformationLito : BasePlayerTransformation
 
     public override void FixedUpdateTransformation()
     {
-        if (_currentTimeBeforeStart <= 0)
-            RefRigidBody.velocity = new Vector2(_hAxis * TransformationSpeed, RefRigidBody.velocity.y);
+        if (_currentTimeBeforeStart > 0) return;
+
+        if (_forceOutOfWater && _isOnWater && RefRigidBody.velocity.y < 2)
+            RefRigidBody.AddForce(Vector2.up * TransformationJumpForce, ForceMode2D.Impulse);
+
+        RefRigidBody.velocity = new Vector2(_hAxis * TransformationSpeed, RefRigidBody.velocity.y);
     }
 }

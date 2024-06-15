@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LitoMovement : MonoBehaviour
-{
+{/*
     public Lito pj;
 
     public Rigidbody2D rb;
@@ -183,7 +183,7 @@ public class LitoMovement : MonoBehaviour
         {
             startCountDownCoyote = true;
         }
-    }*/
+    }
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -223,5 +223,5 @@ public class LitoMovement : MonoBehaviour
             coyoteTimeCounter = coyoteTime;
             startCountDownCoyote = false;
         }
-    }
+    }*/
 }
