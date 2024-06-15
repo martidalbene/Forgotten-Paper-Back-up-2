@@ -146,7 +146,10 @@ public class PlayerController : MonoBehaviour
         PlayerEvents.OnEnableDisableControls -= EnableDisableControls;
 
         foreach (BasePlayerTransformation transformation in _ownedTransformationsList.Values)
+        {
+            transformation.OnPlayerColliderHit -= transformation.OnPlayerColliderHit;
             transformation.OnForceTransformToBase -= TransformForceToNormal;
+        }
     }
 
     private void EnableDisableControls(bool enabled)

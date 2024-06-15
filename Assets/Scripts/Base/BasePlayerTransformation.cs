@@ -33,11 +33,6 @@ public abstract class BasePlayerTransformation : MonoBehaviour, ILitoTransformat
     public Action OnForceTransformToBase;
     public Action OnPlayerColliderHit;
 
-    private void OnDestroy()
-    {
-        OnPlayerColliderHit -= PlayerColliderHit;
-    }
-
     public virtual void InitializeTransformation(Rigidbody2D rBody, AudioSource audioSource)
     {
         _rBody = rBody;
