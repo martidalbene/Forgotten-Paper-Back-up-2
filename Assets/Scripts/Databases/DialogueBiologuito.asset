@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2b5354e80adc946a0d1c44b3d7b8ed, type: 3}
+  m_Name: DialogueBiologuito
+  m_EditorClassIdentifier: 
+  _wordsSpeed: 0.001
+  _npcName: Biologuito
+  _playerName: Lito
+  _dialogueTextLines:
+  - '@talker: Hola joven viajero! En lo que resta del camino te encontraras con muchos
+    insectos a los cuales les gusta mucho el papel. Ten cuidado y no te acerques
+    demasiado a ellos.'

@@ -10,9 +10,8 @@ public class PlayerTransformationLito : BasePlayerTransformation
     public override void ExecTransformation(bool isOnWater, bool isOnFloor, bool isLookingRight)
     {
         _currentTimeBeforeStart = _timeBeforeStart;
-
+        _isOnWater = isOnWater;        
         _isOnFloor = isOnFloor;
-        _isOnWater = isOnWater;
         _isLookingRight = isLookingRight;
 
         RefRigidBody.mass = 1;
@@ -38,11 +37,10 @@ public class PlayerTransformationLito : BasePlayerTransformation
 
     public override void FixedUpdateTransformation()
     {
-        if (_currentTimeBeforeStart > 0) return;
-
         if (_forceOutOfWater && _isOnWater && RefRigidBody.velocity.y < 2)
             RefRigidBody.AddForce(Vector2.up * TransformationJumpForce, ForceMode2D.Impulse);
 
+        if (_currentTimeBeforeStart > 0) return;
         RefRigidBody.velocity = new Vector2(_hAxis * TransformationSpeed, RefRigidBody.velocity.y);
     }
 }

@@ -6,11 +6,7 @@ public class PlayerDetection : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-        if(collisionInfo.gameObject.tag == "Player") 
-        {
-            Lito lito = collisionInfo.gameObject.GetComponent<Lito>();
-
-            lito.BackToSpawnPoint();
-        }
+        if (!collisionInfo.gameObject.CompareTag("Player")) return;
+        PlayerEvents.OnEnemyDamage?.Invoke();
     }
 }

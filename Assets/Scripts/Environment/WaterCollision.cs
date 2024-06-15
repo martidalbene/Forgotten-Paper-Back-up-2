@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WaterCollision : MonoBehaviour
 {
+    /*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;
@@ -21,6 +22,6 @@ public class WaterCollision : MonoBehaviour
         if (gameObject.tag == "DirtyWater" && collision.gameObject.tag == "Player")
         {
             lito.Dirty = true;
-        }*/
-    }
+        }
+    }*/
 }

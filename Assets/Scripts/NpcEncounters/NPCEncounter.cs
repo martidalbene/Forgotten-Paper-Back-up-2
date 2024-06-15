@@ -5,116 +5,139 @@ using UnityEngine.UI;
 
 public class NPCEncounter : MonoBehaviour
 {
-    public GameObject dialoguePanel; // El fondo donde se muestra el texto
-    public Text dialogueText; // El espacio de texto donde se muestra el díalogo
-    public string[] dialogue; // Las distintas líneas de díalogo que se mostrarán
-    private int index; // Índice para sabér qué linea mostrar
+    [SerializeField] private DatabaseDialogues _dialogueData;
 
-    public float wordSpeed; // Tiempo en el que se va a mostrar el texto
-    public bool litoIsClose; // Variable que controla si Lito está o no dentro del área para tener la interacción
+    // Values
+    private bool _isPlayerListening;
+    private bool _isAlreadyInDialog = false;
+    private bool _canGoNextLine = false;
+    private bool _dialogCompleted = false;
 
-    private bool nextDialogue = false; // Variable que controla si ya se terminó de escribir la línea de díalogo para pasar a la siguiente
-    private bool firstTimeWeMeet = true; // Para saber si es la primera vez que el jugador ingresa al área para interactuar
-    public Lito pj;
-    public GameObject NextDialogLetter;
+    private int _dialogCurrentLineIndex = 0;
+    private string _dialogCurrentLine;
+    private float _dialogCurrentWordTime;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        NPCEncounterEvents.OnNPCNextDialogue += NextLine;
+    }
+
+    private void OnDestroy()
+    {
+        NPCEncounterEvents.OnNPCNextDialogue -= NextLine;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player")) return;
+        _isPlayerListening = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player")) return;
+        _isPlayerListening = false;
+    }
+
     void Update()
     {
-        // Si Lito está en el área de interacción y es la primera vez que ingresa
-        if(litoIsClose && firstTimeWeMeet)
+        if (_isPlayerListening)
         {
-            pj.GrandpaIsTalking = true;
-            dialoguePanel.SetActive(true); // Activo el panel
-            StartCoroutine(Typing()); // Empiezo a escribir
-            firstTimeWeMeet = false; // Modifico la variable para saber que ya pasó esa primera vez
-        }
-        // Si lito está en el área de interacción, pero no es la primera vez, es necesario precionar Enter para comenzar la interacción
-        else if(litoIsClose && Input.GetKeyDown(KeyCode.Return) && !nextDialogue)
-        {
-            if(dialoguePanel.activeInHierarchy) {
-                pj.GrandpaIsTalking = false;
-                zeroText(); // Si el panel está activo, llamo una función para cerrar y vaciar todo
-            }
-
-            else // Si no está activo, lo activo y empiezo a escribir
+            // Check if this dialogue is started, otherwise start it
+            if (!_isAlreadyInDialog)
             {
-                dialoguePanel.SetActive(true);
-                StartCoroutine(Typing());
-                pj.GrandpaIsTalking = true;
+                ResetDialogue();
+                _isAlreadyInDialog = true;
+                UIEvents.OnStartNPCDialogue?.Invoke();
+
+                if (!_dialogCompleted)
+                {
+                    GameManager.Instance.OnPauseUnpauseTimer(true);
+                    PlayerEvents.OnEnableDisableControls(false);
+                }
+                else UIEvents.OnEnableSkipNPCDialogue(true);
             }
         }
-        // Si estamos en mitad de una interacción, presionamos F, y la frase anterior se terminó de escribir, pasaremos a la siguiente linea de texto
-        else if(Input.GetKeyDown(KeyCode.F) && nextDialogue && NextDialogLetter.activeInHierarchy)
-        {
-            NextLine();
-        }
 
-        if(dialogueText.text == dialogue[index]) 
-        {
-            NextDialogLetter.SetActive(true);
-            nextDialogue = true; // Si ya se escribió toda la línea de texto, activo la variable que me permita pasar a la siguiente linea
-        }
-    }
-
-    // Dejo el texto vacío, el índice en 0 y desactivo el panel donde se muestra
-    public void zeroText()
-    {
-        dialogueText.text = "";
-        index = 0;
-        dialoguePanel.SetActive(false);
-        pj.GrandpaIsTalking = false;
-        nextDialogue = false;
-    }
-
-    // Corrutina para mostrar la línea de diálogo actual
-
-    IEnumerator Typing()
-    {
-        foreach(char letter in dialogue[index].ToCharArray()) // Por cada Letra en la frase a mostrar...
-        {
-            dialogueText.text += letter; // Sumo la letra al texto que muestro
-            yield return new WaitForSeconds(wordSpeed); // Espero un tiempo a sumar la siguiente
-        }
-    }
-
-    // Cambio de linea de diálogo
-    public void NextLine()
-    {
-        NextDialogLetter.SetActive(false);
-        nextDialogue = false; // Evito que se pueda pasar a la siguiente
-
-        // Pregunto si el índice está al final de la lista de lineas de texto
-        if(index < dialogue.Length - 1)
-        {
-            index++; // Sumo uno al índice
-            dialogueText.text = ""; // Vacio el texto mostrado
-            StartCoroutine(Typing()); // Escribo la nueva linea
-        }
-        // Si lo está, entonces borro todo, porque ya no hay más que mostrar
         else
         {
-            zeroText();
+            // Reset if the player goes away
+            if (_isAlreadyInDialog)
+            {
+                ResetDialogue();
+                _isAlreadyInDialog = false;
+                UIEvents.OnEndNPCDialogue?.Invoke();
+                GameManager.Instance.OnPauseUnpauseTimer(false);
+            }
         }
+
+        if (_dialogCompleted) _canGoNextLine = true;
     }
 
-
-    // Si el jugador está dentro del área de interacción, activo la posibilidad de interactuar
-    void OnTriggerEnter2D(Collider2D other)
+    private void FixedUpdate()
     {
-        if(other.CompareTag("Player"))
+        if (_isPlayerListening) NPCDialogueExec(Time.deltaTime);
+    }
+
+    private void NPCDialogueExec(float delta)
+    {
+        if (_canGoNextLine && !_dialogCompleted) return;
+
+        if (_dialogCurrentWordTime > 0)
         {
-            litoIsClose = true;
+            _dialogCurrentWordTime -= delta;
+            return;
+        }
+
+        if (_dialogueData.DialogueLine(_dialogCurrentLineIndex) != _dialogCurrentLine)
+        {
+            _canGoNextLine = false;
+            _dialogCurrentLine = _dialogueData.DialogueLine(_dialogCurrentLineIndex).Substring(0, _dialogCurrentLine.Length + 1);
+            UIEvents.OnUpdateNPCDialogue(_dialogCurrentLine);
+        }
+        else if (!_canGoNextLine)
+        {
+            _canGoNextLine = true;
+            UIEvents.OnEnableSkipNPCDialogue(true);
+        }
+
+        _dialogCurrentWordTime = _dialogueData.DialogueSpeed;
+    }
+
+
+    private void ResetDialogue()
+    {
+        _dialogCurrentLine = string.Empty;
+        _dialogCurrentWordTime = 0;
+        _dialogCurrentLineIndex = 0;
+    }
+
+
+    public void NextLine()
+    {
+        if (!_isPlayerListening || !_canGoNextLine) return;
+        _canGoNextLine = false;
+        _dialogCurrentLine = string.Empty;
+        _dialogCurrentWordTime = _dialogueData.DialogueSpeed;
+
+        if (_dialogCurrentLineIndex == _dialogueData.DialogueLength)
+        {
+            UIEvents.OnEndNPCDialogue?.Invoke();
+
+            if (!_dialogCompleted)
+            {
+                _dialogCompleted = true;
+                PlayerEvents.OnEnableDisableControls(true);
+            }
+        }
+
+        else
+        {
+            _dialogCurrentLineIndex++;
+            if (_dialogCompleted) UIEvents.OnEnableSkipNPCDialogue(true);
+            else UIEvents.OnEnableSkipNPCDialogue(false);
         }
     }
 
-    // Si el jugador sale, borro el texto, donde lo muestro y desactivo la posibilidad de interactuar
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            litoIsClose = false;
-            zeroText();
-        }
-    }
+
 }

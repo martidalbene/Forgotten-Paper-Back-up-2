@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2b5354e80adc946a0d1c44b3d7b8ed, type: 3}
+  m_Name: DialogueMarinerito
+  m_EditorClassIdentifier: 
+  _wordsSpeed: 0.001
+  _npcName: Marinerito
+  _playerName: Lito
+  _dialogueTextLines:
+  - '@talker: Las aguas son muy peligrosas para papeles como nosotros, sin embargo
+    si navegar es lo que deseas, yo tengo la solucion. '
+  - '@talker: Alternas con *Q* y *E*  las transformaciones que tengas disponibles,
+    en esta ocasion, escoje tu transformacion de Barlito.'
+  - '@talker: Apretando la *W* antes de zambullirte, conseguiras convertirte en barco
+    y conseguir llegar al otro lado.'
+  - '@talker: Pero cuidado, las aguas marrones estan sucias , por lo que no podras
+    navegar por ellas por mas de 5 segundos.'
+  - '@talker: Uy, que me olvidaba, esto es muy importante. Para salir del agua deberas
+    volver a ser una hoja de papel lisa presionando la *W*. Y tranquilo, si cambias
+    estando en el agua, seras impulsado fuera de la misma.'
+  - '@talker: Siempre y cuando no estes rebotando mucho!'

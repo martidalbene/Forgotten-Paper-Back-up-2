@@ -25,18 +25,5 @@ public class Trampolin : MonoBehaviour
             rBody.AddForce(Vector2.up * pushForce, ForceMode2D.Impulse);
             _animation?.SetTrigger("Push");
         }
-
-        /*
-        {
-            LitoMovement pj = collisionInfo.gameObject.GetComponent<LitoMovement>();
-            if (pj.rb.velocity.y <= 0) pj.rb.AddForce(Vector2.up * pushForce, ForceMode2D.Impulse); // Ejerzo una fuerza sobre Lito, empujándolo hacia arriba
-            AudioManager.Instance.Play("leaf");
-            if(gameObject.tag == "Trampolin")
-            {
-                Animator anim = GetComponentInParent<Animator>();
-                anim.SetTrigger("Push");
-            }
-        }
-        */
     }
 }

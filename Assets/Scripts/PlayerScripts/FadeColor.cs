@@ -5,7 +5,7 @@ using UnityEngine;
 public class FadeColor : MonoBehaviour
 {
     // Start is called before the first frame update
-    private Player player;
+    //private Player player;
 
     public Color startcolor, endcolor;
 
@@ -15,7 +15,7 @@ public class FadeColor : MonoBehaviour
 
     void Start()
     {
-        player = GetComponent<Player>();
+        //player = GetComponent<Player>();
         startTime = Time.time;
     }
 

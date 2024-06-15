@@ -7,34 +7,32 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public GameObject pauseMenu; // Referencia al menu de pausa
-    public Text showTime;
-    public int litoDeathsCounter = 0;
-    public Text deathsCounter;
-    public GameObject spawnMarinerito;    
 
-    private bool firstTimeTouchingBoatTransformation = true;
-    private bool firstTimeTouchingPlaneTransformation = true;
+    [Header("Player settings")]
+    [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private LevelGoalTrigger _endLevelTrigger;
 
-    public bool stillPlaying = true;
-    private bool enteringNewScene = true;
-
-    // new
     [Header("Pencils")]
-    [SerializeField] private List<ItemPencil> _allPencilsInWorld = new List<ItemPencil>();
+    [SerializeField] private List<ItemPencil> _allPencilsInWorld = new List<ItemPencil>(); // If for some reason this is needed
 
     // Values
+    private int _playerDeathCounter = 0;
     private float _currentTime = 0;
     private int _playTime;
     private int _colectedPencils = 0;
+    private bool _stillPlaying = true;
+    private bool _enteringNewScene = true;
+    private bool _isTimerPaused = false;
 
     // Events
+    public Action<bool> OnGamePause;
     public Action OnPencilGrab;
-
+    public Action<PlayerController> OnPlayerDeath;
+    public Action OnLevelEnd;
+    public Action<bool> OnPauseUnpauseTimer;
 
     void Awake()
     {
-
         if (Instance == null)
             Instance = this;
         else Destroy(this);
@@ -42,63 +40,67 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    // Busco los objetos que necesito
     void Start()
     {
-        OnPencilGrab += PlayerPencilGrab;
+        SubscribeToEvents();   
     }
 
     private void OnDestroy()
     {
-        OnPencilGrab -= PlayerPencilGrab;
+        UnsubscribeFromEvents();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SubscribeToEvents()
     {
-        if(stillPlaying)
+        OnGamePause += PauseGame;
+        OnPencilGrab += PlayerPencilGrab;
+        OnPlayerDeath += PlayerDeath;
+        OnPauseUnpauseTimer += PauseTimer;
+        _endLevelTrigger.OnGoalReached += GoalReached;
+    }
+
+    private void UnsubscribeFromEvents()
+    {
+        OnGamePause -= PauseGame;
+        OnPencilGrab -= PlayerPencilGrab;
+        OnPlayerDeath -= PlayerDeath;
+        OnPauseUnpauseTimer -= PauseTimer;
+        _endLevelTrigger.OnGoalReached -= GoalReached;
+    }
+
+    private void Update()
+    {
+        if(_stillPlaying)
         {
-            _currentTime += Time.deltaTime;
+            if (!_isTimerPaused) _currentTime += Time.deltaTime;
 
-            if(Input.GetKeyDown(KeyCode.Escape)) 
-            {
-                // Si se presiona Escape, y el menú de pausa está activo, llamo a la funcion Continue()
-                if(pauseMenu.activeInHierarchy)
-                {
-                    Continue();
-                }
-                // Si no está activo, lo activo y paro el juego
-                else
-                {
-                    Time.timeScale = 0f;
-                    pauseMenu.SetActive(true);
-                }     
-            }
-
+            if(Input.GetKeyDown(KeyCode.Escape))
+                OnGamePause?.Invoke(Time.timeScale != 0);
         }
         else
         {
-            if(enteringNewScene && (SceneLoader.Instance.currentScene() == 3 || SceneLoader.Instance.currentScene() == 4))
-            {
-                GetNewTexts();
-                enteringNewScene = false;
-            }
+            if(_enteringNewScene && (SceneLoader.Instance.currentScene() == 3 || SceneLoader.Instance.currentScene() == 4))
+                _enteringNewScene = false;
         }
 
         UpdateTimer(_currentTime);
-        UpdateDeathsCounter();
-        
     }
 
-    // Funcion que controla si el jugador decidió seguir jugando estando en el menu de pausa
-    public void Continue()
+    private void PauseGame(bool isGamePaused)
     {
-        Time.timeScale = 1f; // Vuelvo el tiempo de juego a la normalidad
-        pauseMenu.SetActive(false); // Desactivo el menu de pausa
+        UIEvents.OnGamePaused(isGamePaused);
+
+        if (isGamePaused) Time.timeScale = 0;
+        else Time.timeScale = 1;
+    }
+
+    private void PauseTimer(bool isPaused)
+    {
+        _isTimerPaused = isPaused;
     }
 
     private void UpdateTimer(float currentTime)
-    {  
+    {
         currentTime += 1;
 
         float seconds = Mathf.FloorToInt(currentTime % 60);
@@ -116,56 +118,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void UpdateDeathsCounter()
-    {
-        if(stillPlaying) deathsCounter.text = "Deaths: " + litoDeathsCounter.ToString();
-        else deathsCounter.text = litoDeathsCounter.ToString();
-    }
-
-    private bool FinishPointsCalculator()
-    {
-        bool canBeGood = false;
-
-        if(litoDeathsCounter < 10 && _playTime < 15) canBeGood = true;
-
-        return canBeGood;
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            if(FinishPointsCalculator())
-            {
-                SceneLoader.Instance.goToGoodEnding();
-                stillPlaying = false;
-            }
-            else 
-            {
-                SceneLoader.Instance.goToBadEnding();
-                stillPlaying = false;
-            }
-            
-            
-        }
-    }
-
-    private void GetNewTexts()
-    {
-        deathsCounter = GameObject.Find("Deaths").GetComponent<Text>();
-        showTime = GameObject.Find("Time").GetComponent<Text>();
-    }
-
     public void Reset()
     {
         Destroy(gameObject);
     }
 
+    private void PlayerDeath(PlayerController playerRef)
+    {
+        _playerDeathCounter++;
+        playerRef.gameObject.transform.position = _spawnPoint.position;
+        UIEvents.OnUpdatePlayerDeathCounter($"Deaths: {_playerDeathCounter}");
+    }
 
-    // new
     private void PlayerPencilGrab()
     {
         _colectedPencils += 1;
-        UIEvents.OnPencilCountUpdate($"x{_colectedPencils}");
+        UIEvents.OnPencilCountUpdate($"{_colectedPencils}");
+    }
+
+    private void GoalReached()
+    {
+        if (_playerDeathCounter < 10 && _playTime < 15)
+            SceneLoader.Instance.goToGoodEnding();
+        else
+            SceneLoader.Instance.goToBadEnding();
+
+        _stillPlaying = false;
     }
 }

@@ -37,6 +37,7 @@ public class PlayerTransformationAvionlito : BasePlayerTransformation
         _hAxis = hAxis;
         _isLookingRight = isLookingRight;
         _isOnFloor = isOnFloor;
+        _isOnWater = isOnWater;
     }
 
     public override void FixedUpdateTransformation()
